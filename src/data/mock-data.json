@@ -1,0 +1,256 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "personal_info": {
+        "full_name": "Ana Ramírez",
+        "email": "ana_ra@santander.com.mx",
+        "birthday": "08/04/1990",
+        "phone": "+52 123 665 0035"
+      },
+      "course_records": {
+        "total": 10,
+        "approved": 1,
+        "in_process": 9
+      },
+      "labor_data": {
+        "job_title": "Desarrollador web",
+        "department": "Desarrollo web",
+        "time_position": "21/04/2023",
+        "work_shift": "Tiempo completo"
+      },
+      "salary_compensation": {
+        "base_salary": "$25512.49",
+        "bonus": "$6863.36",
+        "vacation_bonus": "$5492.81",
+        "punctuality_bonus": "$7601.45",
+        "attendance_bonus": "$6116.01",
+        "grocery_vouchers": "$15207.07"
+      }
+    },
+    {
+      "id": 2,
+      "personal_info": {
+        "full_name": "Juan Rodríguez",
+        "email": "juan_ro@santander.com.mx",
+        "birthday": "05/05/1989",
+        "phone": "+52 491 144 0465"
+      },
+      "course_records": {
+        "total": 13,
+        "approved": 5,
+        "in_process": 8
+      },
+      "labor_data": {
+        "job_title": "Responsable de selección",
+        "department": "Recursos Humanos",
+        "time_position": "22/10/2021",
+        "work_shift": "Tiempo completo"
+      },
+      "salary_compensation": {
+        "base_salary": "$30229.50",
+        "bonus": "$5662.86",
+        "vacation_bonus": "$10028.04",
+        "punctuality_bonus": "$14163.26",
+        "attendance_bonus": "$16769.75",
+        "grocery_vouchers": "$10007.58"
+      }
+    },
+    {
+      "id": 3,
+      "personal_info": {
+        "full_name": "María García",
+        "email": "maria_ga@santander.com.mx",
+        "birthday": "13/08/1984",
+        "phone": "+52 816 172 9099"
+      },
+      "course_records": {
+        "total": 13,
+        "approved": 8,
+        "in_process": 5
+      },
+      "labor_data": {
+        "job_title": "Project Manager",
+        "department": "Marketing",
+        "time_position": "07/07/2005",
+        "work_shift": "Tiempo completo"
+      },
+      "salary_compensation": {
+        "base_salary": "$31529.28",
+        "bonus": "$6985.66",
+        "vacation_bonus": "$8331.14",
+        "punctuality_bonus": "$17917.73",
+        "attendance_bonus": "$16875.89",
+        "grocery_vouchers": "$9967.14"
+      }
+    },
+    {
+      "id": 4,
+      "personal_info": {
+        "full_name": "Carlos Pérez",
+        "email": "carlos_pe@santander.com.mx",
+        "birthday": "23/08/1973",
+        "phone": "+52 102 255 4368"
+      },
+      "course_records": { "total": 7, "approved": 4, "in_process": 3 },
+      "labor_data": {
+        "job_title": "Asesor legal",
+        "department": "Legal",
+        "time_position": "07/05/2011",
+        "work_shift": "Tiempo completo"
+      },
+      "salary_compensation": {
+        "base_salary": "$27185.95",
+        "bonus": "$11065.79",
+        "vacation_bonus": "$9970.84",
+        "punctuality_bonus": "$6285.67",
+        "attendance_bonus": "$10209.86",
+        "grocery_vouchers": "$18201.07"
+      }
+    },
+    {
+      "id": 5,
+      "personal_info": {
+        "full_name": "Laura Martínez",
+        "email": "laura_ma@santander.com.mx",
+        "birthday": "29/01/1985",
+        "phone": "+52 207 410 0012"
+      },
+      "course_records": { "total": 15, "approved": 5, "in_process": 10 },
+      "labor_data": {
+        "job_title": "Analista de marketing",
+        "department": "Marketing",
+        "time_position": "05/03/2018",
+        "work_shift": "Medio tiempo"
+      },
+      "salary_compensation": {
+        "base_salary": "$29278.22",
+        "bonus": "$13197.33",
+        "vacation_bonus": "$11135.52",
+        "punctuality_bonus": "$5379.55",
+        "attendance_bonus": "$9266.85",
+        "grocery_vouchers": "$6750.90"
+      }
+    },
+    {
+      "id": 6,
+      "personal_info": {
+        "full_name": "Pedro Sánchez",
+        "email": "pedro_sa@santander.com.mx",
+        "birthday": "25/01/1975",
+        "phone": "+52 199 535 8835"
+      },
+      "course_records": { "total": 6, "approved": 2, "in_process": 4 },
+      "labor_data": {
+        "job_title": "Director",
+        "department": "Recursos Humanos",
+        "time_position": "01/06/2020",
+        "work_shift": "Medio tiempo"
+      },
+      "salary_compensation": {
+        "base_salary": "$20579.04",
+        "bonus": "$12394.32",
+        "vacation_bonus": "$14303.62",
+        "punctuality_bonus": "$17930.82",
+        "attendance_bonus": "$17966.08",
+        "grocery_vouchers": "$7155.42"
+      }
+    },
+    {
+      "id": 7,
+      "personal_info": {
+        "full_name": "Isabel Fernández",
+        "email": "isabel_fe@santander.com.mx",
+        "birthday": "10/03/1991",
+        "phone": "+52 336 332 4696"
+      },
+      "course_records": { "total": 17, "approved": 7, "in_process": 10 },
+      "labor_data": {
+        "job_title": "Analista financiero",
+        "department": "Contaduría",
+        "time_position": "19/05/2021",
+        "work_shift": "Tiempo completo"
+      },
+      "salary_compensation": {
+        "base_salary": "$30300.42",
+        "bonus": "$19868.59",
+        "vacation_bonus": "$7091.50",
+        "punctuality_bonus": "$17649.81",
+        "attendance_bonus": "$12432.70",
+        "grocery_vouchers": "$5154.59"
+      }
+    },
+    {
+      "id": 8,
+      "personal_info": {
+        "full_name": "Manuel González",
+        "email": "manuel_go@santander.com.mx",
+        "birthday": "03/11/1984",
+        "phone": "+52 285 115 6366"
+      },
+      "course_records": { "total": 8, "approved": 5, "in_process": 3 },
+      "labor_data": {
+        "job_title": "Gerente de ventas",
+        "department": "Ventas",
+        "time_position": "31/03/2008",
+        "work_shift": "Medio tiempo"
+      },
+      "salary_compensation": {
+        "base_salary": "$48743.31",
+        "bonus": "$7836.85",
+        "vacation_bonus": "$8441.16",
+        "punctuality_bonus": "$9299.60",
+        "attendance_bonus": "$15193.13",
+        "grocery_vouchers": "$6696.87"
+      }
+    },
+    {
+      "id": 9,
+      "personal_info": {
+        "full_name": "Raquel Torres",
+        "email": "raquel_to@santander.com.mx",
+        "birthday": "25/05/1995",
+        "phone": "+52 553 664 9256"
+      },
+      "course_records": { "total": 12, "approved": 9, "in_process": 3 },
+      "labor_data": {
+        "job_title": "Ejecutivo de ventas",
+        "department": "Ventas",
+        "time_position": "10/06/2023",
+        "work_shift": "Tiempo completo"
+      },
+      "salary_compensation": {
+        "base_salary": "$47578.73",
+        "bonus": "$8614.80",
+        "vacation_bonus": "$10775.26",
+        "punctuality_bonus": "$14237.04",
+        "attendance_bonus": "$12588.01",
+        "grocery_vouchers": "$9176.35"
+      }
+    },
+    {
+      "id": 10,
+      "personal_info": {
+        "full_name": "Alejandro López",
+        "email": "alejandro_lo@santander.com.mx",
+        "birthday": "01/02/1992",
+        "phone": "+52 176 110 6427"
+      },
+      "course_records": { "total": 10, "approved": 9, "in_process": 1 },
+      "labor_data": {
+        "job_title": "Asistente de marketing",
+        "department": "Marketing",
+        "time_position": "24/05/2020",
+        "work_shift": "Medio tiempo"
+      },
+      "salary_compensation": {
+        "base_salary": "$23587.92",
+        "bonus": "$19415.26",
+        "vacation_bonus": "$12801.72",
+        "punctuality_bonus": "$19134.63",
+        "attendance_bonus": "$9610.55",
+        "grocery_vouchers": "$16444.95"
+      }
+    }
+  ]
+}
