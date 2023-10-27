@@ -6,6 +6,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import permitsTable from '../../Assets/Imgs/permitsTable.png'
 
 function TimeOffForm({ onCancel }) {
+
+  const timeOffData = JSON.parse(localStorage.getItem('timeOffData'));
+
+  //console.log(timeOffData.holidays.success);
+  //console.log(timeOffData);
+
   const theme = useTheme();
 
   const [reason, setReason] = useState('');
@@ -93,6 +99,28 @@ function TimeOffForm({ onCancel }) {
       console.log('Hasta:', toDate);
       console.log('Descripción:', description);
       // Agregar lógica para envío de form
+
+      console.log({
+        "id": timeOffData.id,
+        "holidays": {
+          "pending": [...timeOffData.holidays.pending],
+          "success": [...timeOffData.holidays.success],
+          "prev_year_days": timeOffData.holidays.prev_year_days,
+          "current_year_days": timeOffData.holidays.current_year_days,
+          "used_days": timeOffData.holidays.used_days,
+          "total_days": timeOffData.holidays.total_days,
+          "rejected": [...timeOffData.holidays.rejected]
+        },
+        "absences": {
+          "dates": [...timeOffData.absences.dates],
+          "total_days": timeOffData.absences.total_days,
+          "used_days": timeOffData.absences.used_days
+        },
+        "permissions": {
+          "special_days": [...timeOffData.permissions.special_days],
+          "total_days": timeOffData.permissions.total_days
+        }
+      });
       onCancel();
     } else {
       setShowWarning(true);
