@@ -94,10 +94,17 @@ function TimeOffForm({ onCancel }) {
 
   const handleSubmit = () => {
     if (reason && fromDate && toDate && description) {
-      console.log('Motivo:', reason);
-      console.log('Desde:', fromDate);
-      console.log('Hasta:', toDate);
-      console.log('Descripción:', description);
+      if (reason === "vacations"){
+        console.log([fromDate,toDate], "vacaciones");
+      } else if (reason === "personal"){
+        console.log([fromDate,toDate], "ausencia");
+      } else {
+        console.log([fromDate,toDate], "permiso especial");
+      }
+      // console.log('Motivo:', reason);
+      // console.log('Desde:', fromDate);
+      // console.log('Hasta:', toDate);
+      // console.log('Descripción:', description);
       // Agregar lógica para envío de form
 
       console.log({
@@ -176,18 +183,18 @@ function TimeOffForm({ onCancel }) {
                 backgroundColor: theme.palette.bgColor.main,
               }}
             >
-              <MenuItem value="vacaciones">Vacaciones</MenuItem>
-              <MenuItem value="incapacidadEnf">Incapacidad por enfermedad</MenuItem>
-              <MenuItem value="incapacidadMat">Incapacidad por maternidad</MenuItem>
-              <MenuItem value="maternidadBiol">Maternidad biológica</MenuItem>
-              <MenuItem value="maternidadAdop">Maternidad adoptiva</MenuItem>
-              <MenuItem value="paternidad">Paternidad</MenuItem>
-              <MenuItem value="muerteMaterna">Fallecimiento materno</MenuItem>
-              <MenuItem value="maternidadAdd">Adicional por maternidad</MenuItem>
-              <MenuItem value="guardería">Guardería</MenuItem>
+              <MenuItem value="vacations">Vacaciones</MenuItem>
+              <MenuItem value="disabilityIllness">Incapacidad por enfermedad</MenuItem>
+              <MenuItem value="disabilityMat">Incapacidad por maternidad</MenuItem>
+              <MenuItem value="maternityBiol">Maternidad biológica</MenuItem>
+              <MenuItem value="maternityAdop">Maternidad adoptiva</MenuItem>
+              <MenuItem value="paternity">Paternidad</MenuItem>
+              <MenuItem value="maternalDead">Fallecimiento materno</MenuItem>
+              <MenuItem value="maternityAdd">Adicional por maternidad</MenuItem>
+              <MenuItem value="dayCare">Guardería</MenuItem>
               <MenuItem value="personal">Asuntos personales (ausencias)</MenuItem>
-              <MenuItem value="intervencionFam">Intervención conyuge, hijos o padres</MenuItem>
-              <MenuItem value="muerteFam">Fallecimiento familiar directo</MenuItem>
+              <MenuItem value="familyIntervention">Intervención conyuge, hijos o padres</MenuItem>
+              <MenuItem value="familyDead">Fallecimiento familiar directo</MenuItem>
             </TextField>
           </Grid>
           <Grid item xs={6}>
