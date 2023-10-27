@@ -92,10 +92,29 @@ function TimeOffForm({ onCancel }) {
     onCancel();
   };
 
+  function calculateDurationInDays(period) {
+    if (period.length !== 2) {
+      console.error("The period must contain exactly two dates.");
+    }
+  
+    const startDate = new Date(period[0]);
+    const endDate = new Date(period[1]);
+  
+    if (isNaN(startDate) || isNaN(endDate)) {
+      console.error("Provided dates are not valid.");
+    }
+  
+    const timeDifferenceInMilliseconds = endDate - startDate;
+    const durationInDays = Math.floor(timeDifferenceInMilliseconds / (1000 * 60 * 60 * 24)) + 1;
+  
+    return durationInDays;
+  }
+
   const handleSubmit = () => {
     if (reason && fromDate && toDate && description) {
       if (reason === "vacations"){
         console.log([fromDate,toDate], "vacaciones");
+        console.log(calculateDurationInDays([fromDate,toDate]));
       } else if (reason === "personal"){
         console.log([fromDate,toDate], "ausencia");
       } else {
