@@ -4,7 +4,6 @@ function createData(name, feedback, profilePicture) {
     return { name, feedback, profilePicture };
 }
     
-  // <img src='../../../profilePicture1.png' alt="av"/>;
 const rows = [
   createData('Reyna Ramírez', 'Tengo en mis manos los resultados del mes de nuestra área de servicio y quiero felicitarte porque lograste un hito importante para el área y la empresa. Eres un ejemplo para el equipo, continúa con esa labor y recuerda que no hay límites para destacar.','profilePicture1.png'),
   createData('Alex González', 'Tienes una actitud excelente. Cuando te veo llegar a la empresa vienes con un ánimo que en verdad motiva y contagia. Te felicito.', 'profilePicture2.png'),
@@ -21,7 +20,7 @@ export default function Feedback() {
             <>
             <ListItem alignItems="flex-start" >
                 <ListItemAvatar>
-                <Avatar sx={{ bgcolor: '#ec0000' }} alt={row.name} src={`../../../${row.profilePicture}`}/>
+                <Avatar sx={{ bgcolor: '#ec0000' }} alt={row.name} src={`src/assets/Imgs/${row.profilePicture}`}/>
                 </ListItemAvatar>
                 <ListItemText
                   primary={row.name}

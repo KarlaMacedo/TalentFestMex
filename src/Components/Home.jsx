@@ -26,28 +26,6 @@ export default function Home() {
         }
     }, [navigate, userId])
 
-    // const getData = async () => {
-    //     try {
-    //     const data = await getPersonalInfo();
-    //     console.log(data);
-    //     return data;
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    
-    // const getLaborDataPromise = async () => {
-    //   const laborData = await getLaborData()
-    //   .then((data) => {
-    //     console.log(data);
-    //     return data
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    //   localStorage.setItem('laborData', JSON.stringify(laborData))
-    // };
-
       const userData = JSON.parse(localStorage.getItem('userData'))
       let name = userData.full_name.split(' ')[0]
 

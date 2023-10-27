@@ -1,27 +1,17 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import Link from '@mui/material/Link';
-import Paper from '@mui/material/Paper';
-import Box from '@mui/material/Box';
-import Dialog from '@mui/material/Dialog';
-import CircularProgress from '@mui/material/CircularProgress';
-import { Typography, TextField, Button, Grid } from '@mui/material';
-
+import { Typography, TextField, Button, Grid,Link, Paper, Box, Modal, CircularProgress } from '@mui/material';
 import { getPersonalInfo, handleLogin, getLaborData, getCourseRecords, getTimeOff, getSalaryCompensation } from '../Services/authService';
 
-// const getData = () => {
-//   return new Promise((resolve, reject) => {
-//     getPersonalInfo()
-//       .then((data) => {
-//         name = data.fullname
-//         console.log(name);
-//         resolve(data);
-//       })
-//       .catch((error) => {
-//         reject(error);
-//       });
-//   });
-// };
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  bgcolor: 'transparent',
+  p: 4,
+  color: 'white'
+};
 
 function Repository() {
   return (
@@ -29,13 +19,13 @@ function Repository() {
       <Typography >
         {'TalentFest Latam 2023 - Squad Santander '}
       </Typography>
-      <Link variant="body2" color="text.secondary" href="https://github.com/Zarahi93/tf-santander">
+      <Link variant="body2" color="text.secondary" href="https://github.com/KarlaMacedo/TalentFestMex">
         Consulta el Repositorio
       </Link>
     </Box>
   );
 }
-// console.log(handleLogin('alejandro_lo@santander.com.mx','alejandro123'))
+
 export default function Login() {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -88,12 +78,12 @@ export default function Login() {
             alignItems: 'center',
           }}
         >
-            <Dialog open={loading}>
-
-            <CircularProgress />
-           </Dialog>
-
-          <img src="../../logo-login.png" alt="logo" style={{ width: '80%' }} />
+          <Modal open={loading}>
+            <Box sx={style}>              
+              <CircularProgress color='redSantander' />
+            </Box>
+          </Modal>
+          <img src="src/assets/Imgs/logo-login.png" alt="logo" style={{ width: '80%' }} />
           <Typography component="h1" variant="h0" sx={{ mt: 10 }}>
             ¡Hola de nuevo!
           </Typography>
