@@ -113,12 +113,75 @@ function TimeOffForm({ onCancel }) {
   const handleSubmit = () => {
     if (reason && fromDate && toDate && description) {
       if (reason === "vacations"){
-        console.log([fromDate,toDate], "vacaciones");
-        console.log(calculateDurationInDays([fromDate,toDate]));
+        const vacations = [fromDate,toDate];
+        const period = calculateDurationInDays(vacations);
+        let discountPeriod = period;
+        let currentYearDays = timeOffData.holidays.current_year_days;
+        const usedDays= timeOffData.holidays.used_days+period;
+        let prevYearDays = timeOffData.holidays.prev_year_days;
+        while (discountPeriod > 0){
+          if (prevYearDays > 0){
+            prevYearDays--;
+            discountPeriod--;
+          } else if (currentYearDays > 0){
+            currentYearDays--;
+            discountPeriod--;
+          }
+        }
+        const totalDays= (prevYearDays+currentYearDays);
+        console.log(vacations, "vacaciones");
+        console.log(calculateDurationInDays(vacations));
+        console.log({
+          "id": timeOffData.id,
+          "holidays": {
+            "pending": [...timeOffData.holidays.pending, vacations],
+            "success": [...timeOffData.holidays.success],
+            "prev_year_days": prevYearDays,
+            "current_year_days": currentYearDays,
+            "used_days": usedDays,
+            "total_days": totalDays,
+            "rejected": [...timeOffData.holidays.rejected]
+          },
+          "absences": {
+            "dates": [...timeOffData.absences.dates],
+            "total_days": timeOffData.absences.total_days,
+            "used_days": timeOffData.absences.used_days
+          },
+          "permissions": {
+            "special_days": [...timeOffData.permissions.special_days],
+            "total_days": timeOffData.permissions.total_days
+          }
+        }, "objeeeeeto subiiit");
       } else if (reason === "personal"){
         console.log([fromDate,toDate], "ausencia");
+        console.log(calculateDurationInDays([fromDate,toDate]));
       } else {
-        console.log([fromDate,toDate], "permiso especial");
+        const permissions = [fromDate,toDate];
+        const period = calculateDurationInDays(permissions);
+        const totalDays= timeOffData.permissions.total_days+period;
+        console.log(permissions, "permiso especial");
+        console.log(calculateDurationInDays(permissions));
+        console.log({
+          "id": timeOffData.id,
+          "holidays": {
+            "pending": [...timeOffData.holidays.pending],
+            "success": [...timeOffData.holidays.success],
+            "prev_year_days": timeOffData.holidays.prev_year_days,
+            "current_year_days": timeOffData.holidays.current_year_days,
+            "used_days": timeOffData.holidays.used_days,
+            "total_days": timeOffData.holidays.total_days,
+            "rejected": [...timeOffData.holidays.rejected]
+          },
+          "absences": {
+            "dates": [...timeOffData.absences.dates],
+            "total_days": timeOffData.absences.total_days,
+            "used_days": timeOffData.absences.used_days
+          },
+          "permissions": {
+            "special_days": [...timeOffData.permissions.special_days, permissions],
+            "total_days": totalDays
+          }
+        }, "objeeeeeto subiiit");
       }
       // console.log('Motivo:', reason);
       // console.log('Desde:', fromDate);
