@@ -22,6 +22,7 @@ function TimeOffForm({ onCancel }) {
   const [showWarning2, setShowWarning2] = useState(false);
   const [showWarning3, setShowWarning3] = useState(false);
   const [showWarning4, setShowWarning4] = useState(false);
+  const [showWarning5, setShowWarning5] = useState(false);
   const [isImageModalOpen, setImageModalOpen] = useState(false);
 
   const handleReasonChange = (event) => {
@@ -152,6 +153,7 @@ function TimeOffForm({ onCancel }) {
             "total_days": timeOffData.permissions.total_days
           }
         }, "objeeeeeto subiiit");
+        onCancel();
       } else if (reason === "personal") {
         const absences = [fromDate, toDate];
         const period = calculateDurationInDays(absences);
@@ -159,27 +161,32 @@ function TimeOffForm({ onCancel }) {
         const totalDays = timeOffData.absences.total_days - period;
         console.log(absences, "ausencia");
         console.log(calculateDurationInDays(absences));
-        console.log({
-          "id": timeOffData.id,
-          "holidays": {
-            "pending": [...timeOffData.holidays.pending],
-            "success": [...timeOffData.holidays.success],
-            "prev_year_days": timeOffData.holidays.prev_year_days,
-            "current_year_days": timeOffData.holidays.current_year_days,
-            "used_days": timeOffData.holidays.used_days,
-            "total_days": timeOffData.holidays.total_days,
-            "rejected": [...timeOffData.holidays.rejected]
-          },
-          "absences": {
-            "dates": [...timeOffData.absences.dates],
-            "total_days": totalDays,
-            "used_days": used_days
-          },
-          "permissions": {
-            "special_days": [...timeOffData.permissions.special_days],
-            "total_days": timeOffData.permissions.total_days
-          }
-        }, "objeeeeeto subiiit");
+        if (used_days > 2) {
+          setShowWarning5(true);
+        } else {
+          console.log({
+            "id": timeOffData.id,
+            "holidays": {
+              "pending": [...timeOffData.holidays.pending],
+              "success": [...timeOffData.holidays.success],
+              "prev_year_days": timeOffData.holidays.prev_year_days,
+              "current_year_days": timeOffData.holidays.current_year_days,
+              "used_days": timeOffData.holidays.used_days,
+              "total_days": timeOffData.holidays.total_days,
+              "rejected": [...timeOffData.holidays.rejected]
+            },
+            "absences": {
+              "dates": [...timeOffData.absences.dates],
+              "total_days": totalDays,
+              "used_days": used_days
+            },
+            "permissions": {
+              "special_days": [...timeOffData.permissions.special_days],
+              "total_days": timeOffData.permissions.total_days
+            }
+          }, "objeeeeeto subiiit");
+          onCancel();
+        }
       } else {
         const permissions = [fromDate, toDate];
         const period = calculateDurationInDays(permissions);
@@ -207,6 +214,7 @@ function TimeOffForm({ onCancel }) {
             "total_days": totalDays
           }
         }, "objeeeeeto subiiit");
+        onCancel();
       }
       // console.log('Motivo:', reason);
       // console.log('Desde:', fromDate);
@@ -235,7 +243,6 @@ function TimeOffForm({ onCancel }) {
           "total_days": timeOffData.permissions.total_days
         }
       });
-      onCancel();
     } else {
       setShowWarning(true);
     }
@@ -274,6 +281,11 @@ function TimeOffForm({ onCancel }) {
       {showWarning4 && (
         <Typography variant="body1" align="center" color="error" style={{ fontSize: "2.2vh", marginBottom: "25px" }}>
           Selecciona una fecha anterior al día de finalización.
+        </Typography>
+      )}
+      {showWarning5 && (
+        <Typography variant="body1" align="center" color="error" style={{ fontSize: "2.2vh", marginBottom: "25px" }}>
+          Ya no tienes ausencias disponibles.
         </Typography>
       )}
       <form onSubmit={handleSubmit}>
