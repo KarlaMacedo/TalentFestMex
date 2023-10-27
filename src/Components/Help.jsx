@@ -43,7 +43,6 @@ export const Help = () => {
                     height: "-webkit-fill-available",
                     width: "-webkit-fill-available",
                     fontSize: 16,
-                    fontFamily: "Santander Text W05 Regular",
                     poweredByTextColor: "#303235",
                     botMessage: {
                       backgroundColor: "#f7f8ff",
