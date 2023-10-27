@@ -13,10 +13,15 @@ import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typograph
 //   localStorage.setItem('coursesData', JSON.stringify(coursesData))
 // };
 
-const courses = JSON.parse(localStorage.getItem('coursesData'))
-    // llamar courseRecors y hacer el set 
+
+    // // llamar courseRecors y hacer el set 
     // localStorage.setItem('courseData', JSON.stringify(data));
     
+
+
+export default function CourseBalance () {
+    
+const courses = JSON.parse(localStorage.getItem('coursesData'));
 
 function createData(topic, data) {
     return { topic, data };
@@ -27,8 +32,7 @@ function createData(topic, data) {
     createData('Cursos en Proceso', (courses.in_process + ' cursos de ' + courses.total)),
     createData('Faltantes', ((courses.total - courses.in_process) + ' cursos de ' + courses.total)),
   ];
-
-export default function CourseBalance () {
+  
     return (
         <TableContainer sx={{
             borderRadius: '10px',

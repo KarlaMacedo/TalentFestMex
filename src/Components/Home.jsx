@@ -2,9 +2,9 @@ import {useEffect } from 'react';
 
 import { useNavigate } from "react-router-dom";
 import Feedback from '../Components/Home/Feedback'
-//import Content from "../Components/Home/Content";
+import Content from "../Components/Home/Content";
 import { Box, Typography, Grid } from '@mui/material';
-//import CourseBalance from './Home/CourseBalance';
+import CourseBalance from './Home/CourseBalance';
 import Benefits from './Home/Benefits';
 import Header from "./Header"
 import Footer from "./Footer"
@@ -74,8 +74,8 @@ export default function Home() {
             <Typography pb={3} pt={3} align='right' >{`${dateToday}`}</Typography>
           </Grid>
           <Grid item xs={12} md={5}>
-            {/* <Content />
-            <CourseBalance /> */}
+            <Content />
+            <CourseBalance />
             <Benefits />
           </Grid>
           <Grid item xs={12} md={7}>

@@ -3,11 +3,18 @@ import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typograph
 
 // const personalInfo= JSON.parse(localStorage.getItem('userData'));
 // const laboralData = JSON.parse(localStorage.getItem('laborData'));
-const personalInfo= JSON.parse(localStorage.getItem('userData'));
+
 // getPersonalInfo()
-const laboralData= JSON.parse(localStorage.getItem('laborData'));
+
 //getLaborData()
 
+
+
+
+export default function Content () {
+    
+const personalInfo= JSON.parse(localStorage.getItem('userData'));
+const laboralData= JSON.parse(localStorage.getItem('laborData'));
 
 function createData(topic, data) {
     return { topic, data };
@@ -23,9 +30,6 @@ function createData(topic, data) {
     createData('Tiempo en posición', '1 año, 5 meses, 5 días'),
     createData('Tipo de jornada', laboralData.work_shift),
   ];
-
-
-export default function Content () {
     return (
         <TableContainer sx={{
             borderRadius: '10px',
