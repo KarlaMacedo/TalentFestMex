@@ -1,12 +1,12 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase-config";
 
-let userId
+let userId;
 export const handleLogin = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
     const currentAuth = auth.currentUser;
-    userId = auth.currentUser.uid
+    userId = auth.currentUser.uid;
     localStorage.setItem("user-uid", currentAuth.uid);
     console.log("user en storage: ", localStorage.getItem("user-uid"));
   } catch (error) {
@@ -15,11 +15,11 @@ export const handleLogin = async (email, password) => {
 };
 
 console.log(userId);
-const url = "https://mock-santander.glitch.me/"
+const url = "https://mock-santander.glitch.me/";
 
 export const logOut = () => {
   localStorage.clear();
-}
+};
 
 /* 
  * Como alternativa, esta es la función que deben colocar en cada componente para manejar la promesa y evitar errores,
@@ -42,27 +42,33 @@ export const logOut = () => {
 
 export const getPersonalInfo = async () => {
   try {
-    const res = await fetch(url + "personal_info/" + localStorage.getItem('user-uid'), {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
+    const res = await fetch(
+      url + "personal_info/" + localStorage.getItem("user-uid"),
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    });
+    );
     const data = await res.json();
-    return data
+    return data;
   } catch (error) {
     console.log(error);
   }
 };
 
 export const getCourseRecords = async () => {
-    try {
-    const res = await fetch(url + "course_records/" + localStorage.getItem('user-uid'), {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
+  try {
+    const res = await fetch(
+      url + "course_records/" + localStorage.getItem("user-uid"),
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
       }
-    });
+    );
     const data = await res.json();
     console.log(data);
     return data;
@@ -72,40 +78,39 @@ export const getCourseRecords = async () => {
 };
 
 export const getLaborData = async () => {
-    return fetch(url + "labor_data/" + localStorage.getItem('user-uid'), {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      }
+  return fetch(url + "labor_data/" + localStorage.getItem("user-uid"), {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => {
+      return res.json();
     })
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        return data
-      })
-      .catch(error => {
-        console.log('Error al cargar datos: ' + error);
-      });
+    .then((data) => {
+      return data;
+    })
+    .catch((error) => {
+      console.log("Error al cargar datos: " + error);
+    });
 };
-
 
 export const getTimeOff = () => {
   return new Promise((resolve, reject) => {
-    fetch(url + "time_off/" + userId, {
-      method: 'GET',
+    fetch(url + "time_off/" + localStorage.getItem("user-uid"), {
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(res => {
+      .then((res) => {
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         resolve(data);
       })
-      .catch(error => {
-        reject('Error al cargar datos: ' + error);
+      .catch((error) => {
+        reject("Error al cargar datos: " + error);
       });
   });
 };
@@ -113,19 +118,42 @@ export const getTimeOff = () => {
 export const getSalaryCompensation = () => {
   return new Promise((resolve, reject) => {
     fetch(url + "salary_compensation/" + userId, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
-      }
+        "Content-Type": "application/json",
+      },
     })
-      .then(res => {
+      .then((res) => {
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         resolve(data);
       })
-      .catch(error => {
-        reject('Error al cargar datos: ' + error);
+      .catch((error) => {
+        reject("Error al cargar datos: " + error);
       });
   });
+};
+
+export const updateTimeOff = (form) => {
+  fetch(url + "time_off/" + localStorage.getItem("user-uid"), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(form),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("La solicitud no se completó con éxito.");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Datos enviados con éxito:", data);
+      localStorage.setItem('timeOffData', JSON.stringify(data))
+    })
+    .catch((error) => {
+      console.error("Error al enviar datos:", error);
+    });
 };
