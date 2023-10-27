@@ -66,7 +66,7 @@ function Header() {
             </MenuItem>
             <MenuItem onClick={closeMenu}>
               <LogoutOutlinedIcon sx={{ marginRight: 1, color: "red" }} />
-              <Link to="/" style={{ color: "black", textDecoration: "none" }}>Cerrar Sesión</Link>
+              <Link to="/" style={{ color: "black", textDecoration: "none" }} onClick={()=>localStorage.clear()}>Cerrar Sesión</Link>
             </MenuItem>
           </Menu>
         </Toolbar>

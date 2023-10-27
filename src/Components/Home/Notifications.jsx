@@ -1,12 +1,4 @@
 import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typography,tableCellClasses } from '@mui/material';
-//import { getPersonalInfo, getLaborData } from '../../Services/authService';
-
-// const personalInfo= JSON.parse(localStorage.getItem('userData'));
-// const laboralData = JSON.parse(localStorage.getItem('laborData'));
-const personalInfo= JSON.parse(localStorage.getItem('userData'));
-// getPersonalInfo()
-const laboralData= JSON.parse(localStorage.getItem('laborData'));
-//getLaborData()
 
 
 function createData(topic, data) {
@@ -14,18 +6,14 @@ function createData(topic, data) {
   }
   
   const rows = [
-    createData('Nombre', personalInfo.full_name),
-    createData('ID de empleado', '0194877672'),
-    createData('Email', personalInfo.email),
-    createData('Cumpleaños', personalInfo.birthday),
-    createData('Posición', laboralData.job_title),
-    createData('Nivel de Gestión', laboralData.department),
-    createData('Tiempo en posición', '1 año, 5 meses, 5 días'),
-    createData('Tipo de jornada', laboralData.work_shift),
+    createData('Tu solicitud de permiso ha sido aceptada', '5 horas' ),
+    createData('Felicita a Karla por su cumpleaños', '8 horas' ),
+    createData('Tienes 2 cursos en proceso', '9 horas' ),
+    createData('Tú evaluación a sido recibida', '12 horas' ),
   ];
 
 
-export default function Content () {
+export default function Notifications() {
     return (
         <TableContainer sx={{
             borderRadius: '10px',
@@ -36,7 +24,7 @@ export default function Content () {
             color="txtPrincipal" 
             align="left" 
             sx={{ pl: 2, pt: 3, pb: 1 }}
-        >Datos Personales</Typography> 
+        >Notificaciones</Typography> 
 
             <Table sx={{
                         [`& .${tableCellClasses.root}`]: {
@@ -55,7 +43,7 @@ export default function Content () {
                     <TableCell component="th" scope="row">
                         {row.topic}
                     </TableCell>
-                    <TableCell align="left">{row.data}</TableCell>
+                    <TableCell  sx={{opacity:'50%'}} >{row.data}</TableCell>
                     </TableRow>
                 ))}
                 </TableBody>

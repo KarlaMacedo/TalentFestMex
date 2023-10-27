@@ -1,52 +1,131 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-
 import { auth } from "./firebase-config";
-import mockdata from "../data/mock-data.json";
 
-// const email = localStorage.getItem("email");
-const email = "alejandro_lo@santander.com.mx";
-
+let userId
 export const handleLogin = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
-    localStorage.setItem("email", email);
+    const currentAuth = auth.currentUser;
+    userId = auth.currentUser.uid
+    localStorage.setItem("user-uid", currentAuth.uid);
+    console.log("user en storage: ", localStorage.getItem("user-uid"));
   } catch (error) {
     console.error(error);
   }
 };
 
-const dataUser = mockdata.users.find(
-  (user) => user.personal_info.email === email
-);
+console.log(userId);
+const url = "https://mock-santander.glitch.me/"
 
-export const getPersonalInfo = () => {
-  if (dataUser) {
-    return dataUser.personal_info;
-  } else {
-    console.log("El email no está en la base de datos");
+export const logOut = () => {
+  localStorage.clear();
+}
+
+/* 
+ * Como alternativa, esta es la función que deben colocar en cada componente para manejar la promesa y evitar errores,
+    los datos cambian según sea lo que necesiten, pero todo viene explicado en donde se necesita * 
+
+  const getData = () => {
+    return new Promise((resolve, reject) => {
+      * aquí va la función get del servicio (como getPersonalInfo) *
+        .then((data) => {
+          * Aquí va la función en donde quieran aplicar la data, y lleva esa data como parámetro
+          por ejemplo, si la función se llama showEmail, se vería así: showEmail(data) *
+          resolve (data);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  };
+*/
+
+export const getPersonalInfo = async () => {
+  try {
+    const res = await fetch(url + "personal_info/" + localStorage.getItem('user-uid'), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    const data = await res.json();
+    return data
+  } catch (error) {
+    console.log(error);
   }
 };
 
-export const getCoursesData = () => {
-  if (dataUser) {
-    return dataUser.course_records;
-  } else {
-    console.log("El email no está en la base de datos");
+export const getCourseRecords = async () => {
+    try {
+    const res = await fetch(url + "course_records/" + localStorage.getItem('user-uid'), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    const data = await res.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
   }
 };
 
-export const getLaborData = () => {
-  if (dataUser) {
-    return dataUser.labor_data;
-  } else {
-    console.log("El email no está en la base de datos");
-  }
+export const getLaborData = async () => {
+    return fetch(url + "labor_data/" + localStorage.getItem('user-uid'), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        return data
+      })
+      .catch(error => {
+        console.log('Error al cargar datos: ' + error);
+      });
 };
 
-export const getSalaryData = () => {
-  if (dataUser) {
-    return dataUser.salary_compensation;
-  } else {
-    console.log("El email no está en la base de datos");
-  }
+
+export const getTimeOff = () => {
+  return new Promise((resolve, reject) => {
+    fetch(url + "time_off/" + userId, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        resolve(data);
+      })
+      .catch(error => {
+        reject('Error al cargar datos: ' + error);
+      });
+  });
+};
+
+export const getSalaryCompensation = () => {
+  return new Promise((resolve, reject) => {
+    fetch(url + "salary_compensation/" + userId, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        resolve(data);
+      })
+      .catch(error => {
+        reject('Error al cargar datos: ' + error);
+      });
+  });
 };
