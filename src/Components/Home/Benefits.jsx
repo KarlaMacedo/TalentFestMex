@@ -32,8 +32,7 @@ export default function Benefits () {
                         [`& .${tableCellClasses.root}`]: {
                           borderBottom: "none",
                           fontFamily: "Santander Text W05 Regular",
-                          fontSize: 16, 
-                        //   paddingRight: 0
+                          fontSize: 16
                         }
                       }} aria-label="simple table">
                 <TableBody  >

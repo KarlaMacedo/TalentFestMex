@@ -1,5 +1,4 @@
 import {useEffect } from 'react';
-
 import { useNavigate } from "react-router-dom";
 import Feedback from '../Components/Home/Feedback'
 import Content from "../Components/Home/Content";
@@ -30,7 +29,6 @@ export default function Home() {
       let name = userData.full_name.split(' ')[0]
 
       let jobTitle = JSON.parse(localStorage.getItem('laborData'));
-      // console.log(jobTitle);
       const stack = jobTitle.job_title;
 
   return (

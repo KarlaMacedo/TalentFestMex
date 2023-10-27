@@ -1,15 +1,4 @@
 import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typography,tableCellClasses } from '@mui/material';
-//import { getPersonalInfo, getLaborData } from '../../Services/authService';
-
-// const personalInfo= JSON.parse(localStorage.getItem('userData'));
-// const laboralData = JSON.parse(localStorage.getItem('laborData'));
-
-// getPersonalInfo()
-
-//getLaborData()
-
-
-
 
 export default function Content () {
     
@@ -47,7 +36,6 @@ function createData(topic, data) {
                           borderBottom: "none",
                           fontFamily: "Santander Text W05 Regular",
                           fontSize: 16, 
-                        //   paddingRight: 0
                         }
                       }} aria-label="simple table">
                 <TableBody  >

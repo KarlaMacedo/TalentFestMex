@@ -1,23 +1,4 @@
 import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typography,tableCellClasses } from '@mui/material';
-//import { getCourseRecords } from '../../Services/authService';
-
-// const getCoursesData = async () => {
-//   const coursesData = await getCourseRecords()
-//   .then((data) => {
-//     console.log(data);
-//     return data
-//   })
-//   .catch((error) => {
-//     console.log(error);
-//   });
-//   localStorage.setItem('coursesData', JSON.stringify(coursesData))
-// };
-
-
-    // // llamar courseRecors y hacer el set 
-    // localStorage.setItem('courseData', JSON.stringify(data));
-    
-
 
 export default function CourseBalance () {
     
@@ -28,9 +9,9 @@ function createData(topic, data) {
   }
   
   const rows = [
-    createData('Cursos Aprobados', (courses.total + ' cursos de ' + courses.total) ),
+    createData('Cursos Aprobados', (courses.approved + ' cursos de ' + courses.total) ),
     createData('Cursos en Proceso', (courses.in_process + ' cursos de ' + courses.total)),
-    createData('Faltantes', ((courses.total - courses.in_process) + ' cursos de ' + courses.total)),
+    createData('Faltantes', ((courses.total - courses.approved) + ' cursos de ' + courses.total)),
   ];
   
     return (
@@ -49,8 +30,7 @@ function createData(topic, data) {
                         [`& .${tableCellClasses.root}`]: {
                           borderBottom: "none",
                           fontFamily: "Santander Text W05 Regular",
-                          fontSize: 16, 
-                        //   paddingRight: 0
+                          fontSize: 16
                         }
                       }} aria-label="simple table">
                 <TableBody  >
