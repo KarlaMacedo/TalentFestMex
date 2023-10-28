@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase-config";
 
@@ -20,25 +21,6 @@ const url = "https://mock-santander.glitch.me/";
 export const logOut = () => {
   localStorage.clear();
 };
-
-/* 
- * Como alternativa, esta es la función que deben colocar en cada componente para manejar la promesa y evitar errores,
-    los datos cambian según sea lo que necesiten, pero todo viene explicado en donde se necesita * 
-
-  const getData = () => {
-    return new Promise((resolve, reject) => {
-      * aquí va la función get del servicio (como getPersonalInfo) *
-        .then((data) => {
-          * Aquí va la función en donde quieran aplicar la data, y lleva esa data como parámetro
-          por ejemplo, si la función se llama showEmail, se vería así: showEmail(data) *
-          resolve (data);
-        })
-        .catch((error) => {
-          reject(error);
-        });
-    });
-  };
-*/
 
 export const getPersonalInfo = async () => {
   try {
@@ -136,24 +118,20 @@ export const getSalaryCompensation = () => {
 };
 
 export const updateTimeOff = (form) => {
-  fetch(url + "time_off/" + localStorage.getItem("user-uid"), {
-    method: "POST",
+  console.log(form);
+  const api = url + "time_off/" + localStorage.getItem("user-uid")
+  axios.put(api, form, {
     headers: {
       "Content-Type": "application/json",
-    },
-    body: JSON.stringify(form),
+    }
   })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("La solicitud no se completó con éxito.");
-      }
-      return response.json();
-    })
-    .then((data) => {
-      console.log("Datos enviados con éxito:", data);
-      localStorage.setItem('timeOffData', JSON.stringify(data))
-    })
-    .catch((error) => {
-      console.error("Error al enviar datos:", error);
-    });
+  .then(response => {
+    console.log('Datos enviados con éxito:', response.data);
+    localStorage.removeItem("timeOffData")
+    localStorage.setItem("timeOffData", JSON.stringify(response.data))
+    console.log("así se ve el storage ", localStorage.getItem("timeOffData"));
+  })
+  .catch(error => {
+    console.error('Error al enviar datos:', error);
+  });
 };
