@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { IconButton, Container, Typography, TextField, MenuItem, Button, Grid, Dialog, DialogActions, DialogTitle, DialogContent } from '@mui/material';
 import { useTheme } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
+import { updateTimeOff } from '../../Services/authService';
 import permitsTable from '../../Assets/Imgs/permitsTable.png'
 
 function TimeOffForm({ onCancel }) {
@@ -111,7 +112,7 @@ function TimeOffForm({ onCancel }) {
     return durationInDays;
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (reason && fromDate && toDate && description) {
       if (reason === "vacations") {
         const vacations = [fromDate, toDate];
@@ -132,7 +133,7 @@ function TimeOffForm({ onCancel }) {
         const totalDays = (prevYearDays + currentYearDays);
         console.log(vacations, "vacaciones");
         console.log(calculateDurationInDays(vacations));
-        console.log({
+        const updateData = {
           "id": timeOffData.id,
           "holidays": {
             "pending": [...timeOffData.holidays.pending, vacations],
@@ -152,7 +153,11 @@ function TimeOffForm({ onCancel }) {
             "special_days": [...timeOffData.permissions.special_days],
             "total_days": timeOffData.permissions.total_days
           }
-        }, "objeeeeeto subiiit");
+        };
+        console.log(updateData, "objeeeeeto subiiit");
+        const func = await updateTimeOff(updateData);
+        console.log(func, "objeeeeeto");
+        //localStorage.setItem('timeOffData', JSON.stringify(updateData));
         onCancel();
       } else if (reason === "personal") {
         const absences = [fromDate, toDate];
@@ -164,7 +169,7 @@ function TimeOffForm({ onCancel }) {
         if (used_days > 2) {
           setShowWarning5(true);
         } else {
-          console.log({
+          const updateData = {
             "id": timeOffData.id,
             "holidays": {
               "pending": [...timeOffData.holidays.pending],
@@ -184,7 +189,11 @@ function TimeOffForm({ onCancel }) {
               "special_days": [...timeOffData.permissions.special_days],
               "total_days": timeOffData.permissions.total_days
             }
-          }, "objeeeeeto subiiit");
+          };
+          console.log(updateData, "objeeeeeto subiiit");
+          const func = await updateTimeOff(updateData);
+          console.log(func, "objeeeeeto");
+          //localStorage.setItem('timeOffData', JSON.stringify(updateData));
           onCancel();
         }
       } else {
@@ -193,7 +202,7 @@ function TimeOffForm({ onCancel }) {
         const totalDays = timeOffData.permissions.total_days + period;
         console.log(permissions, "permiso especial");
         console.log(calculateDurationInDays(permissions));
-        console.log({
+        const updateData = {
           "id": timeOffData.id,
           "holidays": {
             "pending": [...timeOffData.holidays.pending],
@@ -213,7 +222,11 @@ function TimeOffForm({ onCancel }) {
             "special_days": [...timeOffData.permissions.special_days, permissions],
             "total_days": totalDays
           }
-        }, "objeeeeeto subiiit");
+        };
+        console.log(updateData, "objeeeeeto subiiit");
+        const func= await updateTimeOff(updateData);
+        console.log(func, "objeeeeeto");
+        //localStorage.setItem('timeOffData', JSON.stringify(updateData));
         onCancel();
       }
       // console.log('Motivo:', reason);
@@ -222,27 +235,27 @@ function TimeOffForm({ onCancel }) {
       // console.log('Descripción:', description);
       // Agregar lógica para envío de form
 
-      console.log({
-        "id": timeOffData.id,
-        "holidays": {
-          "pending": [...timeOffData.holidays.pending],
-          "success": [...timeOffData.holidays.success],
-          "prev_year_days": timeOffData.holidays.prev_year_days,
-          "current_year_days": timeOffData.holidays.current_year_days,
-          "used_days": timeOffData.holidays.used_days,
-          "total_days": timeOffData.holidays.total_days,
-          "rejected": [...timeOffData.holidays.rejected]
-        },
-        "absences": {
-          "dates": [...timeOffData.absences.dates],
-          "total_days": timeOffData.absences.total_days,
-          "used_days": timeOffData.absences.used_days
-        },
-        "permissions": {
-          "special_days": [...timeOffData.permissions.special_days],
-          "total_days": timeOffData.permissions.total_days
-        }
-      });
+      // console.log({
+      //   "id": timeOffData.id,
+      //   "holidays": {
+      //     "pending": [...timeOffData.holidays.pending],
+      //     "success": [...timeOffData.holidays.success],
+      //     "prev_year_days": timeOffData.holidays.prev_year_days,
+      //     "current_year_days": timeOffData.holidays.current_year_days,
+      //     "used_days": timeOffData.holidays.used_days,
+      //     "total_days": timeOffData.holidays.total_days,
+      //     "rejected": [...timeOffData.holidays.rejected]
+      //   },
+      //   "absences": {
+      //     "dates": [...timeOffData.absences.dates],
+      //     "total_days": timeOffData.absences.total_days,
+      //     "used_days": timeOffData.absences.used_days
+      //   },
+      //   "permissions": {
+      //     "special_days": [...timeOffData.permissions.special_days],
+      //     "total_days": timeOffData.permissions.total_days
+      //   }
+      // });
     } else {
       setShowWarning(true);
     }

@@ -55,7 +55,7 @@ export const Help = () => {
           </Grid>
           <Grid item xs={12}>
             <Typography variant="body1">
-              Utiliza nuestro chatbot de ayuda para cualquier duda que tengas sobre tus beneficios como empleado Santander
+              Utiliza nuestro chatbot de ayuda para cualquier duda que tengas sobre tus beneficios como empleado Santander.
             </Typography>
           </Grid>
           <Grid item xs={12}>
