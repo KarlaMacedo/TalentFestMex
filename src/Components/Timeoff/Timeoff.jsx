@@ -73,7 +73,7 @@ export const Timeoff = () => {
             color: theme.palette.txtPrincipal.main,
             borderRadius: '20px',
             boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
-            margin: "20px 20px 60px 20px",
+            margin: "5px 20px 50px 20px",
           }}>
           <Grid container spacing={3}>
             <Grid item xs={12}>

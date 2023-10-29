@@ -24,6 +24,7 @@ function TimeOffForm({ onCancel }) {
   const [showWarning3, setShowWarning3] = useState(false);
   const [showWarning4, setShowWarning4] = useState(false);
   const [showWarning5, setShowWarning5] = useState(false);
+  const [showWarning6, setShowWarning6] = useState(false);
   const [isImageModalOpen, setImageModalOpen] = useState(false);
 
   const handleReasonChange = (event) => {
@@ -125,9 +126,13 @@ function TimeOffForm({ onCancel }) {
           if (prevYearDays > 0) {
             prevYearDays--;
             discountPeriod--;
+            setShowWarning6(false);
           } else if (currentYearDays > 0) {
             currentYearDays--;
             discountPeriod--;
+            setShowWarning6(false);
+          } else if(prevYearDays <= 0 && currentYearDays <= 0 ) {
+            setShowWarning6(true);
           }
         }
         const totalDays = (prevYearDays + currentYearDays);
@@ -159,6 +164,7 @@ function TimeOffForm({ onCancel }) {
         console.log(func, "objeeeeeto");
         //localStorage.setItem('timeOffData', JSON.stringify(updateData));
         onCancel();
+        //window.location.reload();
       } else if (reason === "personal") {
         const absences = [fromDate, toDate];
         const period = calculateDurationInDays(absences);
@@ -194,7 +200,9 @@ function TimeOffForm({ onCancel }) {
           const func = await updateTimeOff(updateData);
           console.log(func, "objeeeeeto");
           //localStorage.setItem('timeOffData', JSON.stringify(updateData));
+          setShowWarning5(false);
           onCancel();
+          //window.location.reload();
         }
       } else {
         const permissions = [fromDate, toDate];
@@ -228,6 +236,7 @@ function TimeOffForm({ onCancel }) {
         console.log(func, "objeeeeeto");
         //localStorage.setItem('timeOffData', JSON.stringify(updateData));
         onCancel();
+        //window.location.reload();
       }
       // console.log('Motivo:', reason);
       // console.log('Desde:', fromDate);
@@ -299,6 +308,11 @@ function TimeOffForm({ onCancel }) {
       {showWarning5 && (
         <Typography variant="body1" align="center" color="error" style={{ fontSize: "2.2vh", marginBottom: "25px" }}>
           Ya no tienes ausencias disponibles.
+        </Typography>
+      )}
+      {showWarning6 && (
+        <Typography variant="body1" align="center" color="error" style={{ fontSize: "2.2vh", marginBottom: "25px" }}>
+          Ya no tienes vacaciones disponibles.
         </Typography>
       )}
       <form onSubmit={handleSubmit}>

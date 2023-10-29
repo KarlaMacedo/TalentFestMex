@@ -47,7 +47,7 @@ export const Help = () => {
         style={{
           backgroundColor: 'white',
           padding: '20px 20px 58px 20px',
-          marginTop: '10px'
+          marginTop: '20px'
         }}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
@@ -85,7 +85,7 @@ export const Help = () => {
                       backgroundColor: "#f7f8ff",
                       textColor: "#303235",
                       showAvatar: true,
-                      avatarSrc: "https://assets.stickpng.com/images/5a27cdfd52b1cc0d022e6d5c.png",
+                      avatarSrc: "src/assets/Imgs/logoChat.png",
                     },
                     userMessage: {
                       backgroundColor: "#f2f2f2",

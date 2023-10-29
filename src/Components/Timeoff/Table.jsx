@@ -22,10 +22,17 @@ function VacationInfoTable() {
                     <Typography variant="body1" style={{ fontSize: "2.3vh" }}>{timeOffData.holidays.current_year_days}</Typography>
                 </Grid>
                 <Grid item xs={8}>
-                    <Typography variant="body1" style={{ fontSize: "2.3vh" }}>Saldo total de vacaciones:</Typography>
+                    <Typography variant="body1" style={{ fontSize: "2.3vh" }}>Saldo total de vacaciones disponibles:</Typography>
                 </Grid>
                 <Grid item xs={4} align="center">
                     <Typography variant="body1" style={{ fontSize: "2.3vh" }}>{timeOffData.holidays.total_days}</Typography>
+                </Grid>
+                
+                <Grid item xs={8}>
+                    <Typography variant="body1" style={{ fontSize: "2.3vh" }}>Días de vacaciones utilizados:</Typography>
+                </Grid>
+                <Grid item xs={4} align="center">
+                    <Typography variant="body1" style={{ fontSize: "2.3vh" }}>{timeOffData.holidays.used_days}</Typography>
                 </Grid>
             </Grid>
 

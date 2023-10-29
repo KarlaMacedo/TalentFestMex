@@ -117,21 +117,44 @@ export const getSalaryCompensation = () => {
   });
 };
 
-export const updateTimeOff = (form) => {
+// export const updateTimeOff = (form) => {
+//   console.log(form);
+//   const api = url + "time_off/" + localStorage.getItem("user-uid")
+//   axios.put(api, form, {
+//     headers: {
+//       "Content-Type": "application/json",
+//     }
+//   })
+//   .then(response => {
+//     console.log('Datos enviados con éxito:', response.data);
+//     localStorage.removeItem("timeOffData")
+//     localStorage.setItem("timeOffData", JSON.stringify(response.data))
+//     console.log("así se ve el storage ", localStorage.getItem("timeOffData"));
+//   })
+//   .catch(error => {
+//     console.error('Error al enviar datos:', error);
+//   });
+// };
+
+export const updateTimeOff = async (form) => {
   console.log(form);
-  const api = url + "time_off/" + localStorage.getItem("user-uid")
-  axios.put(api, form, {
-    headers: {
-      "Content-Type": "application/json",
-    }
-  })
-  .then(response => {
+  const api = url + "time_off/" + localStorage.getItem("user-uid");
+
+  try {
+    const response = await axios.put(api, form, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
     console.log('Datos enviados con éxito:', response.data);
-    localStorage.removeItem("timeOffData")
-    localStorage.setItem("timeOffData", JSON.stringify(response.data))
-    console.log("así se ve el storage ", localStorage.getItem("timeOffData"));
-  })
-  .catch(error => {
+    localStorage.removeItem("timeOffData");
+    localStorage.setItem("timeOffData", JSON.stringify(response.data));
+    console.log("Así se ve el storage ", localStorage.getItem("timeOffData"));
+
+    return response.data; // Devuelve los datos de la respuesta si es necesario.
+  } catch (error) {
     console.error('Error al enviar datos:', error);
-  });
+    throw error; // Puedes lanzar el error para manejarlo más adelante si es necesario.
+  }
 };
