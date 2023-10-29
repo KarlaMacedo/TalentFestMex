@@ -125,13 +125,32 @@ export const updateTimeOff = (form) => {
       "Content-Type": "application/json",
     }
   })
-  .then(response => {
-    console.log('Datos enviados con éxito:', response.data);
-    localStorage.removeItem("timeOffData")
-    localStorage.setItem("timeOffData", JSON.stringify(response.data))
-    console.log("así se ve el storage ", localStorage.getItem("timeOffData"));
-  })
-  .catch(error => {
-    console.error('Error al enviar datos:', error);
-  });
+    .then(response => {
+      console.log('Datos enviados con éxito:', response.data);
+      localStorage.removeItem("timeOffData")
+      localStorage.setItem("timeOffData", JSON.stringify(response.data))
+      console.log("así se ve el storage ", localStorage.getItem("timeOffData"));
+    })
+    .catch(error => {
+      console.error('Error al enviar datos:', error);
+    });
 };
+
+export const getHolidaysInfo = async (userId) => {
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'https://mock-santander.glitch.me/time_off',
+    headers: {}
+  };
+
+  return axios.request(config)
+    .then((response) => {
+      const holidayData = response.data
+      console.log( holidayData.find(object => object.id === userId));
+      return holidayData.find(object => object.id === userId)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}

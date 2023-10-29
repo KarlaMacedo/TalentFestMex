@@ -7,9 +7,10 @@ import {
 } from "react-big-calendar";
 import moment from "moment";
 import YearView from "./YearView";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import 'moment/locale/es';
+import { getHolidaysInfo } from "../../Services/authService";
 moment.locale("es");
 
 const localizer = momentLocalizer(moment);
@@ -49,6 +50,17 @@ export default function Calendar({theme}) {
       setView(newView);
     }
   };
+
+  const userId = localStorage.getItem('user-uid');
+  const getHolidayObj = async () => {
+    const holidayObj = await getHolidaysInfo(userId)
+    console.log(holidayObj)
+    return holidayObj
+  }
+
+  useEffect(() => {
+    getHolidayObj()
+  }, [])
   
   return (
     <BigCalendar
