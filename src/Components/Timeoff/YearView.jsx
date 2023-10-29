@@ -11,61 +11,9 @@ export default function YearView({
   localizer,
   onView,
   onNavigate,
+  nationalFestivities
 }) {
   const currRange = YearView.range(date, { localizer });
-  const dateString = currRange[0]
-  const dateObject = new Date(dateString);
-  const year = dateObject.getFullYear();
-
-  const nationalFestivities = [
-    // feriados que NO se trabaja
-    //resalte las vacaciones
-    {
-      start: moment(`${year}-01-01`).toDate(),
-      end: moment(`${year}-01-01`).toDate(),
-    },
-    {
-      start: moment(`${year}-02-06`).toDate(),
-      end: moment(`${year}-02-06`).toDate(),
-    },
-    {
-      start: moment(`${year}-03-21`).toDate(),
-      end: moment(`${year}-03-21`).toDate(),
-    },
-    {
-      start: moment(`${year}-04-06`).toDate(),
-      end: moment(`${year}-04-06`).toDate(),
-    },
-    {
-      start: moment(`${year}-04-07`).toDate(),
-      end: moment(`${year}-04-07`).toDate(),
-    },
-    {
-      start: moment(`${year}-05-01`).toDate(),
-      end: moment(`${year}-05-01`).toDate(),
-    },
-    {
-      start: moment(` ${year}-09-16`).toDate(),
-      end: moment(` ${year}-09-16`).toDate(),
-    },
-    {
-      start: moment(` ${year}-11-02`).toDate(),
-      end: moment(` ${year}-11-02`).toDate(),
-    },
-    {
-      start: moment(` ${year}-11-20`).toDate(),
-      end: moment(` ${year}-11-20`).toDate(),
-    },
-    {
-      start: moment(` ${year}-12-12`).toDate(),
-      end: moment(` ${year}-12-12`).toDate(),
-    },
-    {
-      start: moment(` ${year}-12-25`).toDate(),
-      end: moment(` ${year}-12-25`).toDate(),
-    },
-  ];
-
 
   return (
     <div >
