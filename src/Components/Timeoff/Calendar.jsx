@@ -81,25 +81,24 @@ export default function Calendar({ theme }) {
     }
   };
 
-
   const userId = localStorage.getItem('user-uid');
   const getHolidayObj = async () => {
     const holidayObj = await getHolidaysInfo(userId)
     localStorage.setItem('holidays', JSON.stringify(holidayObj))
     return holidayObj
   }
-
-  useEffect(() => {
-    getHolidayObj()
-  }, [])
-
+  
   let holidayObj = localStorage.getItem('holidays')
   holidayObj = JSON.parse(holidayObj)
   const holidays = holidayObj.holidays
   const permissions = holidayObj.permissions
   const absences = holidayObj.absences
 
-  console.log(holidays, permissions, absences);
+  // console.log(holidays, permissions, absences);
+
+  useEffect(() => {
+    getHolidayObj()
+  }, [])
 
   return (
     <BigCalendar
@@ -120,6 +119,9 @@ export default function Calendar({ theme }) {
       }}
       theme={theme}
       nationalFestivities = {nationalFestivities}
+      holidays = {holidays}
+      permissions = {permissions}
+      absences = {absences}
     />
   );
 }

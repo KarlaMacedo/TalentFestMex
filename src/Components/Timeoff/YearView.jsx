@@ -11,8 +11,13 @@ export default function YearView({
   localizer,
   onView,
   onNavigate,
-  nationalFestivities
+  nationalFestivities,
+  holidays,
+  permissions,
+  absences
 }) {
+  console.log(holidays,permissions,absences);
+
   const currRange = YearView.range(date, { localizer });
 
   return (
