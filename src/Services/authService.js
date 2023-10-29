@@ -147,7 +147,7 @@ export const getHolidaysInfo = async (userId) => {
   return axios.request(config)
     .then((response) => {
       const holidayData = response.data
-      console.log( holidayData.find(object => object.id === userId));
+      // console.log( holidayData.find(object => object.id === userId));
       return holidayData.find(object => object.id === userId)
     })
     .catch((error) => {
