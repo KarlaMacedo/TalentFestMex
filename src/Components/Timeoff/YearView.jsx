@@ -5,6 +5,7 @@ import { Navigate } from "react-big-calendar";
 import Calendar from "react-calendar";
 import moment from "moment";
 import './calendar.css'
+import { Tune } from "@mui/icons-material";
 
 export default function YearView({
   date,
@@ -15,11 +16,15 @@ export default function YearView({
   pendingHolidays,
   acceptedHolidays, rejectedHolidays, absences, specialDays
 }) {
-  console.log(rejectedHolidays);
+  console.log(specialDays);
 
   const currRange = YearView.range(date, { localizer });
 
-  let startDateRange = false
+  let isPending = false
+  let isRejected = false
+  let isAccepted = false
+  let isAbsence = false
+  let isSpecial = false
 
   return (
     <div >
@@ -28,6 +33,7 @@ export default function YearView({
           <div key={index}>
             <Calendar
               activeStartDate={month}
+              // GPT CLASSNAMES 
               tileClassName={({ date, view }) => {
                 // NATIONAL HOLIDAYS
                 if (
@@ -39,110 +45,151 @@ export default function YearView({
                   return "red-holiday";
                 }
 
-                // ACCEPTED HOLODAYS
-                if (view === "month") {
-                  const isHolidayStart = acceptedHolidays?.some((event) =>
+                // PENDING HOLIDAYS
+                if (
+                  view === "month" &&
+                  pendingHolidays?.find((event) =>
                     moment(event.start).isSame(moment(date), "day")
-                  );
+                  )
+                ) {
+                  isPending = true
+                  // setIsPending()
+                  return 'orange-holiday'
+                }
 
-                  if (isHolidayStart) {
-                    startDateRange = true;
-                    return "green-holiday";
-                  } else if (startDateRange) {
-                    const isHolidayEnd = acceptedHolidays?.some((event) =>
-                      moment(event.end).isSame(moment(date), "day")
-                    );
+                // if (isPending) {
+                //   if (view === "month" &&
+                //     pendingHolidays?.find((event) =>
+                //       moment(event.end).isSame(moment(date), "day")
+                //     )) {
+                //     isPending = false
+                //     return "orange-holiday";
+                //   }
+                //   return "orange-holiday";
+                // }
 
-                    if (isHolidayEnd) {
-                      startDateRange = false;
-                      return "green-holiday";
-                    }
-                  }
+                if (
+                  view === "month" &&
+                  pendingHolidays?.find((event) =>
+                    moment(event.end).isSame(moment(date), "day")
+                  )
+                ) {
+                  return 'orange-holiday'
+                }
+
+                // ACCEPTED HOLIDAYS
+                if (
+                  view === "month" &&
+                  acceptedHolidays?.find((event) =>
+                    moment(event.start).isSame(moment(date), "day")
+                  )
+                ) {
+                  isAccepted = true
+                  return "green-holiday";
+                }
+
+                // if (isAccepted) {
+                //   if (view === "month" &&
+                //     acceptedHolidays?.find((event) =>
+                //       moment(event.end).isSame(moment(date), "day")
+                //     )) {
+                //     isAccepted = false
+                //     return "green-holiday";
+                //   }
+                //   return "green-holiday";
+                // }
+
+                if (
+                  view === "month" &&
+                  acceptedHolidays?.find((event) =>
+                    moment(event.end).isSame(moment(date), "day")
+                  )
+                ) {
+                  return "green-holiday";
                 }
 
                 // REJECTED HOLIDAYS
-                if (view === "month") {
-                  const isHolidayStart = rejectedHolidays?.some((event) =>
+                if (
+                  view === "month" &&
+                  rejectedHolidays?.find((event) =>
                     moment(event.start).isSame(moment(date), "day")
-                  );
-
-                  if (isHolidayStart) {
-                    startDateRange = true;
-                    return "pink-holiday";
-                  } else if (startDateRange) {
-                    const isHolidayEnd = rejectedHolidays?.some((event) =>
-                      moment(event.end).isSame(moment(date), "day")
-                    );
-
-                    if (isHolidayEnd) {
-                      startDateRange = false;
-                      return "pink-holiday";
-                    }
-                  }
+                  )
+                ) {
+                  isRejected = true
+                  return "pink-holiday";
                 }
 
-                // PENDING HOLIDAYS
-                if (view === "month") {
-                  const isHolidayStart = pendingHolidays?.some((event) =>
-                    moment(event.start).isSame(moment(date), "day")
-                  );
+                // if (isRejected) {
+                //   if (view === "month" &&
+                //     rejectedHolidays?.find((event) =>
+                //       moment(event.end).isSame(moment(date), "day")
+                //     )) {
+                //     isRejected = false
+                //     return "pink-holiday";
+                //   }
+                //   return "pink-holiday";
+                // }
 
-                  if (isHolidayStart) {
-                    startDateRange = true;
-                    return "orange-holiday";
-                  } else if (startDateRange) {
-                    const isHolidayEnd = pendingHolidays?.some((event) =>
-                      moment(event.end).isSame(moment(date), "day")
-                    );
-
-                    if (isHolidayEnd) {
-                      startDateRange = false;
-                      return "orange-holiday";
-                    }
-                  }
+                if (
+                  view === "month" &&
+                  rejectedHolidays?.find((event) =>
+                    moment(event.end).isSame(moment(date), "day")
+                  )
+                ) {
+                  return "pink-holiday";
                 }
 
                 // ABSENCES
-                if (view === "month") {
-                  const isHolidayStart = absences?.some((event) =>
+                if (
+                  view === "month" &&
+                  absences?.find((event) =>
                     moment(event.start).isSame(moment(date), "day")
-                  );
+                  )
+                ) {
+                  return "blue-absence";
+                }
 
-                  if (isHolidayStart) {
-                    startDateRange = true;
-                    return "blue-absence";
-                  } else if (startDateRange) {
-                    const isHolidayEnd = absences?.some((event) =>
-                      moment(event.end).isSame(moment(date), "day")
-                    );
-
-                    if (isHolidayEnd) {
-                      startDateRange = false;
-                      return "blue-absence";
-                    }
-                  }
+                if (
+                  view === "month" &&
+                  absences?.find((event) =>
+                    moment(event.end).isSame(moment(date), "day")
+                  )
+                ) {
+                  return "blue-absence";
                 }
 
                 // SPECIAL DAYS
-                if (view === "month") {
-                  const isHolidayStart = specialDays?.some((event) =>
+                if (
+                  view === "month" &&
+                  specialDays?.find((event) =>
                     moment(event.start).isSame(moment(date), "day")
-                  );
-
-                  if (isHolidayStart) {
-                    startDateRange = true;
-                    return "yellow-special";
-                  } else if (startDateRange) {
-                    const isHolidayEnd = specialDays?.some((event) =>
-                      moment(event.end).isSame(moment(date), "day")
-                    );
-
-                    if (isHolidayEnd) {
-                      startDateRange = false;
-                      return "yellow-special";
-                    }
-                  }
+                  )
+                ) {
+                  isSpecial = true
+                  return "yellow-special";
                 }
+
+                // if (isSpecial) {
+                //   if (view === "month" &&
+                //     specialDays?.find((event) =>
+                //       moment(event.end).isSame(moment(date), "day")
+                //     )) {
+                //     isSpecial = false
+                //     return "yellow-special";
+                //   }
+                //   return "yellow-special";
+                // }
+
+                if (
+                  view === "month" &&
+                  specialDays?.find((event) =>
+                    moment(event.end).isSame(moment(date), "day")
+                  )
+                ) {
+                  return "yellow-special";
+                }
+
+                return "";
               }}
               // formatShortWeekday={(locale, date) => formatDate(date, 'dd')}
               defaultView="month"

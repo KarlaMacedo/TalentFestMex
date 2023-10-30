@@ -127,14 +127,14 @@
 }
 
 .orange-holiday {
-  background-color: #c2296c !important;
+  background-color: #e26c27 !important;
   border-radius: 1rem;
   color: white;
   font-family: "Santander Headline W05 Bold" !important;
 }
 
 .pink-holiday {
-  background-color: #e26c27 !important;
+  background-color: #c2296c !important;
   border-radius: 1rem;
   color: white;
   font-family: "Santander Headline W05 Bold" !important;
@@ -153,8 +153,6 @@
   color: white;
   font-family: "Santander Headline W05 Bold" !important;
 }
-
-
 
 @media screen and (min-width: 360px) and (orientation: portrait) {
   .react-calendar__navigation__label__labelText {
