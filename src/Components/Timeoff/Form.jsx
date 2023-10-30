@@ -4,7 +4,7 @@ import { IconButton, Container, Typography, TextField, MenuItem, Button, Grid, D
 import { useTheme } from '@mui/system';
 import CloseIcon from '@mui/icons-material/Close';
 import { updateTimeOff } from '../../Services/authService';
-import permitsTable from '../../Assets/Imgs/permitsTable.png'
+import permitsTable from 'https://github.com/KarlaMacedo/TalentFestMex/blob/main/public/assets/Imgs/permitsTable.png'
 
 function TimeOffForm({ onCancel }) {
 

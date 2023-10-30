@@ -45,7 +45,7 @@ export default function Benefits () {
                         {row.topic}
                     </TableCell>
                     <TableCell align="left">
-                        <img src={`src/assets/Imgs/Done.png`} alt='check'></img>
+                        <img src={`/public/assets/Imgs/Done.png`} alt='check'></img>
                     </TableCell>
                     </TableRow>
                 ))}
