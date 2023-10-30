@@ -20,7 +20,7 @@ export default function Feedback() {
             <>
             <ListItem alignItems="flex-start" >
                 <ListItemAvatar>
-                <Avatar sx={{ bgcolor: '#ec0000' }} alt={row.name} src={`src/assets/Imgs/${row.profilePicture}`}/>
+                <Avatar sx={{ bgcolor: '#ec0000' }} alt={row.name} src={`/public/assets/Imgs/${row.profilePicture}`}/>
                 </ListItemAvatar>
                 <ListItemText
                   primary={row.name}

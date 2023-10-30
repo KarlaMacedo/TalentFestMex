@@ -83,7 +83,7 @@ export default function Login() {
               <CircularProgress color='redSantander' />
             </Box>
           </Modal>
-          <img src="src/assets/Imgs/logo-login.png" alt="logo" style={{ width: '80%' }} />
+          <img src="/public/assets/Imgs/logo-login.png" alt="logo" style={{ width: '80%' }} />
           <Typography component="h1" variant="h0" sx={{ mt: 10 }}>
             ¡Hola de nuevo!
           </Typography>

@@ -85,7 +85,7 @@ export const Help = () => {
                       backgroundColor: "#f7f8ff",
                       textColor: "#303235",
                       showAvatar: true,
-                      avatarSrc: "src/assets/Imgs/logoChat.png",
+                      avatarSrc: "/public/assets/Imgs/logoChat.png",
                     },
                     userMessage: {
                       backgroundColor: "#f2f2f2",
