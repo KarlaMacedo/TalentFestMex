@@ -3,7 +3,6 @@ import Footer from "./Footer";
 import { Box, Typography, Link, Button, Grid, Container } from '@mui/material';
 import { FullPageChat } from "flowise-embed-react";
 import { useEffect, useRef, useState } from 'react';
-import logo from "/public/assets/Imgs/logoChat.png"
 
 export const Help = () => {
   const chatContainerRef = useRef(null);
@@ -86,7 +85,7 @@ export const Help = () => {
                       backgroundColor: "#f7f8ff",
                       textColor: "#303235",
                       showAvatar: true,
-                      avatarSrc: {logo},
+                      avatarSrc: "https://i.pinimg.com/564x/51/68/a8/5168a85631d2a0923374c252c2c5a0a8.jpg",
                     },
                     userMessage: {
                       backgroundColor: "#f2f2f2",
