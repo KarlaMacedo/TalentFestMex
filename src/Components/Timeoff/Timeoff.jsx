@@ -80,7 +80,7 @@ export const Timeoff = () => {
               <VacationInfoTable />
             </Grid>
             <Grid item xs={12}>
-              <Typography onClick={openImageModal} style={{ color: "blue", cursor: "pointer", textDecoration: "underline", marginLeft: "25px" }}>Información sobre permisos especiales</Typography>
+              <Typography onClick={openImageModal} style={{ color: "blue", cursor: "pointer", textDecoration: "underline", marginLeft: "25px" }}>Información sobre vacaciones</Typography>
             </Grid>
             <Grid item xs={5} align="center">
               <Button variant="contained" style={{ backgroundColor: "white", color: "red" }} onClick={handleOpenCalendar}>
