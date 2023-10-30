@@ -98,6 +98,7 @@ export default function Calendar({ theme }) {
   useEffect(() => {
     async function fetchData() {
       const response = await getHolidayObj()
+      console.log(response.permissions.special_days);
       setPendingHolidays(dateFormatter(response.holidays.pending))
       setRejectedHolidays(dateFormatter(response.holidays.rejected))
       setAcceptedHolidays(dateFormatter(response.holidays.success))
@@ -106,7 +107,8 @@ export default function Calendar({ theme }) {
     }
     fetchData();
   }, []);
-  // console.log(specialDays);
+
+  console.log(specialDays);
 
   const dateFormatter = (dateArray) => {
     // console.log(dateArray);
@@ -123,7 +125,7 @@ export default function Calendar({ theme }) {
       }
     })
     )
-    // console.log('date object array ',dateObjArr.flat());
+    console.log('date object array ',dateObjArr.flat());
     return dateObjArr.flat()
   }
 
@@ -150,6 +152,7 @@ export default function Calendar({ theme }) {
       acceptedHolidays={acceptedHolidays}
       rejectedHolidays={rejectedHolidays}
       absences={absences}
+      specialDays={specialDays}
     />
   );
 }
