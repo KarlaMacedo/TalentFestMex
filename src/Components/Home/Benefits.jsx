@@ -1,5 +1,5 @@
 import { Table, TableBody, TableCell, TableContainer, TableRow, Paper, Typography,tableCellClasses } from '@mui/material';
-
+import check from "/public/assets/Imgs/Done.png"
 
 function createData(topic) {
     return { topic };
@@ -45,7 +45,7 @@ export default function Benefits () {
                         {row.topic}
                     </TableCell>
                     <TableCell align="left">
-                        <img src={`/public/assets/Imgs/Done.png`} alt='check'></img>
+                        <img src={check} alt='check'></img>
                     </TableCell>
                     </TableRow>
                 ))}
