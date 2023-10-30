@@ -20,15 +20,15 @@ export default function YearView({
 
   const currRange = YearView.range(date, { localizer });
 
-  let isPending = false
-  let isRejected = false
-  let isAccepted = false
-  let isAbsence = false
-  let isSpecial = false
-
+  
   return (
     <div >
       {currRange.map((month, index) => {
+      let isPending = false
+      let isRejected = false
+      let isAccepted = false
+      let isAbsence = false
+      let isSpecial = false
         return (
           <div key={index}>
             <Calendar
@@ -57,16 +57,16 @@ export default function YearView({
                   return 'orange-holiday'
                 }
 
-                // if (isPending) {
-                //   if (view === "month" &&
-                //     pendingHolidays?.find((event) =>
-                //       moment(event.end).isSame(moment(date), "day")
-                //     )) {
-                //     isPending = false
-                //     return "orange-holiday";
-                //   }
-                //   return "orange-holiday";
-                // }
+                if (isPending) {
+                  if (view === "month" &&
+                    pendingHolidays?.find((event) =>
+                      moment(event.end).isSame(moment(date), "day")
+                    )) {
+                    isPending = false
+                    return "orange-holiday";
+                  }
+                  return "orange-holiday";
+                }
 
                 if (
                   view === "month" &&
@@ -88,16 +88,16 @@ export default function YearView({
                   return "green-holiday";
                 }
 
-                // if (isAccepted) {
-                //   if (view === "month" &&
-                //     acceptedHolidays?.find((event) =>
-                //       moment(event.end).isSame(moment(date), "day")
-                //     )) {
-                //     isAccepted = false
-                //     return "green-holiday";
-                //   }
-                //   return "green-holiday";
-                // }
+                if (isAccepted) {
+                  if (view === "month" &&
+                    acceptedHolidays?.find((event) =>
+                      moment(event.end).isSame(moment(date), "day")
+                    )) {
+                    isAccepted = false
+                    return "green-holiday";
+                  }
+                  return "green-holiday";
+                }
 
                 if (
                   view === "month" &&
@@ -119,16 +119,16 @@ export default function YearView({
                   return "pink-holiday";
                 }
 
-                // if (isRejected) {
-                //   if (view === "month" &&
-                //     rejectedHolidays?.find((event) =>
-                //       moment(event.end).isSame(moment(date), "day")
-                //     )) {
-                //     isRejected = false
-                //     return "pink-holiday";
-                //   }
-                //   return "pink-holiday";
-                // }
+                if (isRejected) {
+                  if (view === "month" &&
+                    rejectedHolidays?.find((event) =>
+                      moment(event.end).isSame(moment(date), "day")
+                    )) {
+                    isRejected = false
+                    return "pink-holiday";
+                  }
+                  return "pink-holiday";
+                }
 
                 if (
                   view === "month" &&
@@ -169,16 +169,16 @@ export default function YearView({
                   return "yellow-special";
                 }
 
-                // if (isSpecial) {
-                //   if (view === "month" &&
-                //     specialDays?.find((event) =>
-                //       moment(event.end).isSame(moment(date), "day")
-                //     )) {
-                //     isSpecial = false
-                //     return "yellow-special";
-                //   }
-                //   return "yellow-special";
-                // }
+                if (isSpecial) {
+                  if (view === "month" &&
+                    specialDays?.find((event) =>
+                      moment(event.end).isSame(moment(date), "day")
+                    )) {
+                    isSpecial = false
+                    return "yellow-special";
+                  }
+                  return "yellow-special";
+                }
 
                 if (
                   view === "month" &&
