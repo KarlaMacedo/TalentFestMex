@@ -17,7 +17,7 @@ import Calendar from "./Calendar"
 import TimeOffForm from "./Form"
 import Header from "../Header"
 import Footer from "../Footer"
-import vacationsTable from '../../Assets/Imgs/vacationsTable.png'
+import vacationsTable from '/public/assets/Imgs/vacationsTable.png'
 
 
 export const Timeoff = () => {
@@ -73,14 +73,14 @@ export const Timeoff = () => {
             color: theme.palette.txtPrincipal.main,
             borderRadius: '20px',
             boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.2)',
-            margin: "20px 20px 60px 20px",
+            margin: "5px 20px 50px 20px",
           }}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <VacationInfoTable />
             </Grid>
             <Grid item xs={12}>
-              <Typography onClick={openImageModal} style={{ color: "blue", cursor: "pointer", textDecoration: "underline", marginLeft: "25px" }}>Información sobre permisos especiales</Typography>
+              <Typography onClick={openImageModal} style={{ color: "blue", cursor: "pointer", textDecoration: "underline", marginLeft: "25px" }}>Información sobre vacaciones</Typography>
             </Grid>
             <Grid item xs={5} align="center">
               <Button variant="contained" style={{ backgroundColor: "white", color: "red" }} onClick={handleOpenCalendar}>

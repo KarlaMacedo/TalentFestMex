@@ -13,7 +13,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import AirplanemodeActiveIcon from '@mui/icons-material/AirplanemodeActive';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
-import logo from "../Assets/Imgs/logo.png"
+import logo from "../../public/assets/Imgs/logo.png"
 import { Link } from 'react-router-dom';
 
 function Header() {

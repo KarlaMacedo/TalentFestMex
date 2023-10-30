@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Typography, TextField, Button, Grid,Link, Paper, Box, Modal, CircularProgress } from '@mui/material';
 import { getPersonalInfo, handleLogin, getLaborData, getCourseRecords, getTimeOff, getSalaryCompensation } from '../Services/authService';
+import logo from "/public/assets/Imgs/logo-login.png"
 
 const style = {
   position: 'absolute',
@@ -83,7 +84,7 @@ export default function Login() {
               <CircularProgress color='redSantander' />
             </Box>
           </Modal>
-          <img src="src/assets/Imgs/logo-login.png" alt="logo" style={{ width: '80%' }} />
+          <img src={logo} alt="logo" style={{ width: '80%' }} />
           <Typography component="h1" variant="h0" sx={{ mt: 10 }}>
             ¡Hola de nuevo!
           </Typography>
