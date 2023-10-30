@@ -15,10 +15,15 @@ moment.locale("es");
 const localizer = momentLocalizer(moment);
 
 export default function Calendar({ theme }) {
-
-  // console.log(theme);
   const [view, setView] = useState(Views.MONTH); // Set the default view to YEAR
   const [date, setDate] = useState(new Date());
+  // let pendingHolidays, rejectedHolidays, acceptedHolidays, absences, special_days
+  const [pendingHolidays, setPendingHolidays] = useState()
+  const [rejectedHolidays, setRejectedHolidays ] = useState()
+  const [acceptedHolidays, setAcceptedHolidays ] = useState()
+  const [absences, setAbsences] = useState()
+  const [specialDays, setSpecialDays] = useState()
+
   const views = {
     month: true,
     year: YearView,
@@ -28,53 +33,52 @@ export default function Calendar({ theme }) {
   const year = dateObject.getFullYear();
 
   const nationalFestivities = [
-  // feriados que NO se trabaja
-  //resalte las vacaciones
-  {
-    start: moment(`${year}-01-01`).toDate(),
-    end: moment(`${year}-01-01`).toDate(),
-  },
-  {
-    start: moment(`${year}-02-06`).toDate(),
-    end: moment(`${year}-02-06`).toDate(),
-  },
-  {
-    start: moment(`${year}-03-21`).toDate(),
-    end: moment(`${year}-03-21`).toDate(),
-  },
-  {
-    start: moment(`${year}-04-06`).toDate(),
-    end: moment(`${year}-04-06`).toDate(),
-  },
-  {
-    start: moment(`${year}-04-07`).toDate(),
-    end: moment(`${year}-04-07`).toDate(),
-  },
-  {
-    start: moment(`${year}-05-01`).toDate(),
-    end: moment(`${year}-05-01`).toDate(),
-  },
-  {
-    start: moment(` ${year}-09-16`).toDate(),
-    end: moment(` ${year}-09-16`).toDate(),
-  },
-  {
-    start: moment(` ${year}-11-02`).toDate(),
-    end: moment(` ${year}-11-02`).toDate(),
-  },
-  {
-    start: moment(` ${year}-11-20`).toDate(),
-    end: moment(` ${year}-11-20`).toDate(),
-  },
-  {
-    start: moment(` ${year}-12-12`).toDate(),
-    end: moment(` ${year}-12-12`).toDate(),
-  },
-  {
-    start: moment(` ${year}-12-25`).toDate(),
-    end: moment(` ${year}-12-25`).toDate(),
-  },
-];
+    {
+      start: moment(`${year}-01-01`).toDate(),
+      end: moment(`${year}-01-01`).toDate(),
+    },
+    {
+      start: moment(`${year}-02-06`).toDate(),
+      end: moment(`${year}-02-06`).toDate(),
+    },
+    {
+      start: moment(`${year}-03-21`).toDate(),
+      end: moment(`${year}-03-21`).toDate(),
+    },
+    {
+      start: moment(`${year}-04-06`).toDate(),
+      end: moment(`${year}-04-06`).toDate(),
+    },
+    {
+      start: moment(`${year}-04-07`).toDate(),
+      end: moment(`${year}-04-07`).toDate(),
+    },
+    {
+      start: moment(`${year}-05-01`).toDate(),
+      end: moment(`${year}-05-01`).toDate(),
+    },
+    {
+      start: moment(` ${year}-09-16`).toDate(),
+      end: moment(` ${year}-09-16`).toDate(),
+    },
+    {
+      start: moment(` ${year}-11-02`).toDate(),
+      end: moment(` ${year}-11-02`).toDate(),
+    },
+    {
+      start: moment(` ${year}-11-20`).toDate(),
+      end: moment(` ${year}-11-20`).toDate(),
+    },
+    {
+      start: moment(` ${year}-12-12`).toDate(),
+      end: moment(` ${year}-12-12`).toDate(),
+    },
+    {
+      start: moment(` ${year}-12-25`).toDate(),
+      end: moment(` ${year}-12-25`).toDate(),
+    },
+  ];
+  
   const handleViewChange = (newView) => {
     if (views[newView]) {
       setView(newView);
@@ -85,20 +89,46 @@ export default function Calendar({ theme }) {
   const getHolidayObj = async () => {
     const holidayObj = await getHolidaysInfo(userId)
     localStorage.setItem('holidays', JSON.stringify(holidayObj))
-    return holidayObj
+    let holidayData = localStorage.getItem('holidays')
+    holidayData = JSON.parse(holidayData)
+    // console.log(holidayData);
+    return holidayData
   }
-  
-  let holidayObj = localStorage.getItem('holidays')
-  holidayObj = JSON.parse(holidayObj)
-  const holidays = holidayObj.holidays
-  const permissions = holidayObj.permissions
-  const absences = holidayObj.absences
-
-  // console.log(holidays, permissions, absences);
 
   useEffect(() => {
-    getHolidayObj()
-  }, [])
+    async function fetchData() {
+      const response = await getHolidayObj()
+      setPendingHolidays(dateFormatter(response.holidays.pending))
+      setRejectedHolidays(dateFormatter(response.holidays.rejected))
+      setAcceptedHolidays(dateFormatter(response.holidays.success))
+      setAbsences(dateFormatter(response.absences.dates))
+      setSpecialDays(dateFormatter(response.permissions.special_days))
+    }
+    fetchData();
+  }, []);
+
+  console.log(pendingHolidays);
+  console.log(acceptedHolidays);
+
+
+  const dateFormatter = (dateArray) => {
+    // console.log(dateArray);
+    let newArray = []
+    for (let date of dateArray) {
+      newArray.push(date.map((date) => date.replace(/\//g, '-')))
+    }
+    // console.log(newArray);
+    let dateObjArr = []
+    dateObjArr.push(newArray.map((el) => {
+      return {
+        start: moment(el[0]).toDate(),
+        end: moment(el[1]).toDate(),
+      }
+    })
+    )
+    // console.log('date object array ',dateObjArr);
+    return dateObjArr
+  }
 
   return (
     <BigCalendar
@@ -118,10 +148,10 @@ export default function Calendar({ theme }) {
         week: "Semana"
       }}
       theme={theme}
-      nationalFestivities = {nationalFestivities}
-      holidays = {holidays}
-      permissions = {permissions}
-      absences = {absences}
+      nationalFestivities={nationalFestivities}
+      pendingHolidays={pendingHolidays}
+    // permissions={permissions}
+    // absences={absences}
     />
   );
 }
