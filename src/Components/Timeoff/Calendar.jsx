@@ -85,6 +85,7 @@ export default function Calendar({ theme }) {
     }
   };
 
+
   const userId = localStorage.getItem('user-uid');
   const getHolidayObj = async () => {
     const holidayObj = await getHolidaysInfo(userId)
@@ -98,7 +99,7 @@ export default function Calendar({ theme }) {
   useEffect(() => {
     async function fetchData() {
       const response = await getHolidayObj()
-      console.log(response.permissions.special_days);
+      // console.log(response.permissions.special_days);
       setPendingHolidays(dateFormatter(response.holidays.pending))
       setRejectedHolidays(dateFormatter(response.holidays.rejected))
       setAcceptedHolidays(dateFormatter(response.holidays.success))
@@ -106,6 +107,14 @@ export default function Calendar({ theme }) {
       setSpecialDays(dateFormatter(response.permissions.special_days))
     }
     fetchData();
+
+    var buttons = document.querySelectorAll("button");
+    for (var i = 0; i < buttons.length; i++) {
+      if (buttons[i].textContent === "Año") {
+        buttons[i].click(); // Click the button with the specific text
+        break; // Exit the loop once the button is clicked
+      }
+    }
   }, []);
 
   console.log(specialDays);
@@ -125,7 +134,7 @@ export default function Calendar({ theme }) {
       }
     })
     )
-    console.log('date object array ',dateObjArr.flat());
+    // console.log('date object array ',dateObjArr.flat());
     return dateObjArr.flat()
   }
 
