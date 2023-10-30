@@ -1,7 +1,7 @@
 import { Box, Typography, Avatar, ListItemAvatar, ListItemText, Divider, ListItem, List, Button } from '@mui/material';
-import img1 from "public/assets/Imgs/profilePicture1.png"
-import img2 from "public/assets/Imgs/profilePicture2.png"
-import img3 from "public/assets/Imgs/profilePicture3.png"
+import img1 from "/public/assets/Imgs/profilePicture1.png"
+import img2 from "/public/assets/Imgs/profilePicture2.png"
+import img3 from "/public/assets/Imgs/profilePicture3.png"
 
 
 function createData(name, feedback, profilePicture) {
