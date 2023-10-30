@@ -17,7 +17,7 @@ import Calendar from "./Calendar"
 import TimeOffForm from "./Form"
 import Header from "../Header"
 import Footer from "../Footer"
-import vacationsTable from '../../Assets/Imgs/vacationsTable.png'
+import vacationsTable from 'https://github.com/KarlaMacedo/TalentFestMex/blob/main/src/assets/Imgs/vacationsTable.png'
 
 
 export const Timeoff = () => {
