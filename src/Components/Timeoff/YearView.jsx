@@ -20,7 +20,6 @@ export default function YearView({
 
   const currRange = YearView.range(date, { localizer });
 
-  
   return (
     <div >
       {currRange.map((month, index) => {
