@@ -28,6 +28,129 @@ export default function YearView({
           <div key={index}>
             <Calendar
               activeStartDate={month}
+              // tileClassName={({ date, view }) => {
+              //   // NATIONAL HOLIDAYS
+              //   if (
+              //     view === "month" &&
+              //     nationalFestivities?.find((event) =>
+              //       moment(event.start).isSame(moment(date), "day")
+              //     )
+              //   ) {
+              //     return "red-holiday";
+              //   }
+
+              //   // PENDING HOLIDAYS
+              //   if (
+              //     view === "month" &&
+              //     pendingHolidays?.find((event) =>
+              //       moment(event.start).isSame(moment(date), "day")
+              //     )
+              //   ) {
+              //     startDateRange = true
+              //     return "orange-holiday";
+              //   }
+
+              //   if (startDateRange) {
+              //     if (view === "month" &&
+              //       pendingHolidays?.find((event) =>
+              //         moment(event.end).isSame(moment(date), "day")
+              //       )) {
+              //       startDateRange = false
+              //       return "orange-holiday";
+              //     }
+              //     return "orange-holiday";
+              //   }
+
+              //   //ACCEPTED HOLIDAYS
+              //   if (
+              //     view === "month" &&
+              //     acceptedHolidays?.find((event) =>
+              //       moment(event.start).isSame(moment(date), "day")
+              //     )
+              //   ) {
+              //     startDateRange = true
+              //     return "green-holiday";
+              //   }
+
+              //   if (startDateRange) {
+              //     if (view === "month" &&
+              //       acceptedHolidays?.find((event) =>
+              //         moment(event.end).isSame(moment(date), "day")
+              //       )) {
+              //       startDateRange = false
+              //       return "green-holiday";
+              //     }
+              //     return "green-holiday";
+              //   }
+
+              //   // REJECTED HOLIDAY
+              //   if (
+              //     view === "month" &&
+              //     rejectedHolidays?.find((event) =>
+              //       moment(event.start).isSame(moment(date), "day")
+              //     )
+              //   ) {
+              //     startDateRange = true
+              //     return "pink-holiday";
+              //   }
+
+              //   if (startDateRange ) {
+              //     if (view === "month" &&
+              //     rejectedHolidays?.find((event) =>
+              //       moment(event.end).isSame(moment(date), "day")
+              //     )) {
+              //       startDateRange = false
+              //     return "pink-holiday";
+              //     }
+              //     return "pink-holiday";
+              //   }
+
+              //   //ABSENCES
+              //   if (
+              //     view === "month" &&
+              //     absences?.find((event) =>
+              //       moment(event.start).isSame(moment(date), "day")
+              //     )
+              //   ) {
+              //     startDateRange = true
+              //     return "blue-absence";
+              //   }
+
+              //   if (startDateRange ) {
+              //     if (view === "month" &&
+              //     absences?.find((event) =>
+              //       moment(event.end).isSame(moment(date), "day")
+              //     )) {
+              //       startDateRange = false
+              //     return "blue-absence";
+              //     }
+              //     return "blue-absence";
+              //   }
+
+              //   // SPECIAL DAYS
+              //   if (
+              //     view === "month" &&
+              //     specialDays?.find((event) =>
+              //       moment(event.start).isSame(moment(date), "day")
+              //     )
+              //   ) {
+              //     startDateRange = true
+              //     return "yellow-special";
+              //   }
+
+              //   if (startDateRange ) {
+              //     if (view === "month" &&
+              //     specialDays?.find((event) =>
+              //       moment(event.end).isSame(moment(date), "day")
+              //     )) {
+              //       startDateRange = false
+              //     return "yellow-special";
+              //     }
+              //     return "yellow-special";
+              //   }
+              // }}
+
+              // GPT CLASSNAMES 
               tileClassName={({ date, view }) => {
                 // NATIONAL HOLIDAYS
                 if (
@@ -39,110 +162,57 @@ export default function YearView({
                   return "red-holiday";
                 }
 
-                // ACCEPTED HOLODAYS
-                if (view === "month") {
-                  const isHolidayStart = acceptedHolidays?.some((event) =>
+                // PENDING HOLIDAYS
+                if (
+                  view === "month" &&
+                  pendingHolidays?.find((event) => 
+                    moment(event.start).isSame(moment(date), "day") 
+                  )
+                ) {
+                  return "orange-holiday";
+                }
+
+                // ACCEPTED HOLIDAYS
+                if (
+                  view === "month" &&
+                  acceptedHolidays?.find((event) =>
                     moment(event.start).isSame(moment(date), "day")
-                  );
-
-                  if (isHolidayStart) {
-                    startDateRange = true;
-                    return "green-holiday";
-                  } else if (startDateRange) {
-                    const isHolidayEnd = acceptedHolidays?.some((event) =>
-                      moment(event.end).isSame(moment(date), "day")
-                    );
-
-                    if (isHolidayEnd) {
-                      startDateRange = false;
-                      return "green-holiday";
-                    }
-                  }
+                  )
+                ) {
+                  return "green-holiday";
                 }
 
                 // REJECTED HOLIDAYS
-                if (view === "month") {
-                  const isHolidayStart = rejectedHolidays?.some((event) =>
+                if (
+                  view === "month" &&
+                  rejectedHolidays?.find((event) =>
                     moment(event.start).isSame(moment(date), "day")
-                  );
-
-                  if (isHolidayStart) {
-                    startDateRange = true;
-                    return "pink-holiday";
-                  } else if (startDateRange) {
-                    const isHolidayEnd = rejectedHolidays?.some((event) =>
-                      moment(event.end).isSame(moment(date), "day")
-                    );
-
-                    if (isHolidayEnd) {
-                      startDateRange = false;
-                      return "pink-holiday";
-                    }
-                  }
-                }
-
-                // PENDING HOLIDAYS
-                if (view === "month") {
-                  const isHolidayStart = pendingHolidays?.some((event) =>
-                    moment(event.start).isSame(moment(date), "day")
-                  );
-
-                  if (isHolidayStart) {
-                    startDateRange = true;
-                    return "orange-holiday";
-                  } else if (startDateRange) {
-                    const isHolidayEnd = pendingHolidays?.some((event) =>
-                      moment(event.end).isSame(moment(date), "day")
-                    );
-
-                    if (isHolidayEnd) {
-                      startDateRange = false;
-                      return "orange-holiday";
-                    }
-                  }
+                  )
+                ) {
+                  return "pink-holiday";
                 }
 
                 // ABSENCES
-                if (view === "month") {
-                  const isHolidayStart = absences?.some((event) =>
+                if (
+                  view === "month" &&
+                  absences?.find((event) =>
                     moment(event.start).isSame(moment(date), "day")
-                  );
-
-                  if (isHolidayStart) {
-                    startDateRange = true;
-                    return "blue-absence";
-                  } else if (startDateRange) {
-                    const isHolidayEnd = absences?.some((event) =>
-                      moment(event.end).isSame(moment(date), "day")
-                    );
-
-                    if (isHolidayEnd) {
-                      startDateRange = false;
-                      return "blue-absence";
-                    }
-                  }
+                  )
+                ) {
+                  return "blue-absence";
                 }
 
                 // SPECIAL DAYS
-                if (view === "month") {
-                  const isHolidayStart = specialDays?.some((event) =>
+                if (
+                  view === "month" &&
+                  specialDays?.find((event) =>
                     moment(event.start).isSame(moment(date), "day")
-                  );
-
-                  if (isHolidayStart) {
-                    startDateRange = true;
-                    return "yellow-special";
-                  } else if (startDateRange) {
-                    const isHolidayEnd = specialDays?.some((event) =>
-                      moment(event.end).isSame(moment(date), "day")
-                    );
-
-                    if (isHolidayEnd) {
-                      startDateRange = false;
-                      return "yellow-special";
-                    }
-                  }
+                  )
+                ) {
+                  return "yellow-special";
                 }
+
+                return "";
               }}
               // formatShortWeekday={(locale, date) => formatDate(date, 'dd')}
               defaultView="month"
