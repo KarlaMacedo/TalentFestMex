@@ -19,8 +19,8 @@ export default function Calendar({ theme }) {
   const [date, setDate] = useState(new Date());
   // let pendingHolidays, rejectedHolidays, acceptedHolidays, absences, special_days
   const [pendingHolidays, setPendingHolidays] = useState()
-  const [rejectedHolidays, setRejectedHolidays ] = useState()
-  const [acceptedHolidays, setAcceptedHolidays ] = useState()
+  const [rejectedHolidays, setRejectedHolidays] = useState()
+  const [acceptedHolidays, setAcceptedHolidays] = useState()
   const [absences, setAbsences] = useState()
   const [specialDays, setSpecialDays] = useState()
 
@@ -78,7 +78,7 @@ export default function Calendar({ theme }) {
       end: moment(` ${year}-12-25`).toDate(),
     },
   ];
-  
+
   const handleViewChange = (newView) => {
     if (views[newView]) {
       setView(newView);
@@ -106,10 +106,7 @@ export default function Calendar({ theme }) {
     }
     fetchData();
   }, []);
-
-  console.log(pendingHolidays);
-  console.log(acceptedHolidays);
-
+  // console.log(specialDays);
 
   const dateFormatter = (dateArray) => {
     // console.log(dateArray);
@@ -126,8 +123,8 @@ export default function Calendar({ theme }) {
       }
     })
     )
-    // console.log('date object array ',dateObjArr);
-    return dateObjArr
+    // console.log('date object array ',dateObjArr.flat());
+    return dateObjArr.flat()
   }
 
   return (
@@ -150,8 +147,9 @@ export default function Calendar({ theme }) {
       theme={theme}
       nationalFestivities={nationalFestivities}
       pendingHolidays={pendingHolidays}
-    // permissions={permissions}
-    // absences={absences}
+      acceptedHolidays={acceptedHolidays}
+      rejectedHolidays={rejectedHolidays}
+      absences={absences}
     />
   );
 }
