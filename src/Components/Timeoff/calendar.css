@@ -112,7 +112,7 @@
   margin: 2px;
 }
 
-.red {
+.red-holiday {
   background-color: #ec000e !important;
   border-radius: 1rem;
   color: white;
@@ -121,19 +121,40 @@
 
 .green-holiday {
   background-color: #c3cf12 !important;
+  border-radius: 1rem;
+  color: white;
+  font-family: "Santander Headline W05 Bold" !important;
+}
+
+.orange-holiday {
+  background-color: #c2296c !important;
+  border-radius: 1rem;
+  color: white;
+  font-family: "Santander Headline W05 Bold" !important;
+}
+
+.pink-holiday {
+  background-color: #e26c27 !important;
+  border-radius: 1rem;
+  color: white;
+  font-family: "Santander Headline W05 Bold" !important;
 }
 
 .yellow-special {
   background-color: #fcc707 !important;
+  border-radius: 1rem;
+  color: white;
+  font-family: "Santander Headline W05 Bold" !important;
 }
 
 .blue-absence {
   background-color: #33b7c6 !important;
+  border-radius: 1rem;
+  color: white;
+  font-family: "Santander Headline W05 Bold" !important;
 }
 
-.pink {
-  background-color: #c2296c !important;
-}
+
 
 @media screen and (min-width: 360px) and (orientation: portrait) {
   .react-calendar__navigation__label__labelText {

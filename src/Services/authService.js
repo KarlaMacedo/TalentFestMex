@@ -158,3 +158,22 @@ export const updateTimeOff = async (form) => {
     throw error; // Puedes lanzar el error para manejarlo más adelante si es necesario.
   }
 };
+
+export const getHolidaysInfo = async (userId) => {
+  let config = {
+    method: 'get',
+    maxBodyLength: Infinity,
+    url: 'https://mock-santander.glitch.me/time_off',
+    headers: {}
+  };
+
+  return axios.request(config)
+    .then((response) => {
+      const holidayData = response.data
+      // console.log( holidayData.find(object => object.id === userId));
+      return holidayData.find(object => object.id === userId)
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
