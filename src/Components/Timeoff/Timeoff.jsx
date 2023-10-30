@@ -17,7 +17,7 @@ import Calendar from "./Calendar"
 import TimeOffForm from "./Form"
 import Header from "../Header"
 import Footer from "../Footer"
-import vacationsTable from '../../Assets/Imgs/vacationsTable.png'
+import vacationsTable from 'https://github.com/KarlaMacedo/TalentFestMex/blob/main/src/assets/Imgs/vacationsTable.png'
 
 
 export const Timeoff = () => {
@@ -80,7 +80,7 @@ export const Timeoff = () => {
               <VacationInfoTable />
             </Grid>
             <Grid item xs={12}>
-              <Typography onClick={openImageModal} style={{ color: "blue", cursor: "pointer", textDecoration: "underline", marginLeft: "25px" }}>Información sobre permisos especiales</Typography>
+              <Typography onClick={openImageModal} style={{ color: "blue", cursor: "pointer", textDecoration: "underline", marginLeft: "25px" }}>Información sobre vacaciones</Typography>
             </Grid>
             <Grid item xs={5} align="center">
               <Button variant="contained" style={{ backgroundColor: "white", color: "red" }} onClick={handleOpenCalendar}>
